@@ -27,8 +27,9 @@ function Testimonial() {
 
   return (
     <Wrapper>
-      <h3 className='sub-heading'>customer's review</h3>
-      <h1 className='heading'>what they say</h1>
+      <h1 className='heading'>
+        latest <span>products</span>
+      </h1>
       <div className='section-center'>
         {people.map((person, personIndex) => {
           const { id, image, name, title, quote } = person

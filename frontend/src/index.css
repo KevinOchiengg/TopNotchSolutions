@@ -158,43 +158,19 @@ button {
   color: var(--clr-white);
   letter-spacing: 0.1rem;
 }
-
 .heading {
-  background: #244d4d;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
-.heading h3 {
-  font-size: 2.5rem;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  color: var(--clr-blue);
   text-transform: uppercase;
-  color: #fff;
+  text-align: center;
 }
 
-.heading p {
-  color: #fff;
-  font-size: 2rem;
-}
-
-.heading p span {
-  color: yellow;
-}
-
-.heading p a {
-  color: #fff;
-}
-
-.heading p a:hover {
-  color: yellow;
+.heading span {
+  color: var(--clr-yellow);
+  text-transform: uppercase;
+  margin: 0 1rem;
 }
 
 .title {

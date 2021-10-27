@@ -19,47 +19,53 @@ import { withRouter } from 'react-router'
 import logo from '../logo.png'
 import SearchBar from './SearchBar'
 import Sidebar from './Sidebar'
+import { listProductCategories } from '../actions/productActions'
+import { formatPrice } from '../utils/helpers'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
-const Navbar = () => {
+const Navbar = (props) => {
   const { openSidebar, openSubmenu, closeSubmenu } = useGlobalContext()
   const [navbar, setNavbar] = useState(false)
-  const displaySubmenu = (e) => {
-    const page = e.target.textContent
-    const tempBtn = e.target.getBoundingClientRect()
-    const center = (tempBtn.left + tempBtn.right) / 2
-    const bottom = tempBtn.bottom - 3
-    openSubmenu(page, { center, bottom })
-  }
-
-  const handleScroll = () => {
-    if (Window.scrollY < 300) setNavbar(true)
-    else setNavbar(false)
-  }
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-  }, [])
-
-  const handleSubmenu = (e) => {
-    if (!e.target.classList.contains('link-btn')) {
-      closeSubmenu()
-    }
-  }
+  const productId = props.match.params.id
+  const qty = props.location.search
+    ? Number(props.location.search.split('=')[1])
+    : 1
   const cart = useSelector((state) => state.cart)
+  const { cartItems, error } = cart
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (productId) {
+      dispatch(addToCart(productId, qty))
+    }
+  }, [dispatch, productId, qty])
 
-  const { cartItems } = cart
+  const removeFromCartHandler = (id) => {
+    // delete action
+    dispatch(removeFromCart(id))
+  }
+
+  const checkoutHandler = () => {
+    props.history.push('/signin?redirect=shipping')
+  }
+
+  const productCategoryList = useSelector((state) => state.productCategoryList)
+  const { categories } = productCategoryList
   const userSignin = useSelector((state) => state.userSignin)
   const { userInfo } = userSignin
   const wishList = useSelector((state) => state.wishList)
   const { wishListItems } = wishList
-  const dispatch = useDispatch()
 
   const signoutHandler = () => {
     dispatch(signout())
   }
 
+  useEffect(() => {
+    dispatch(listProductCategories())
+  }, [dispatch])
+
   return (
-    <Wrapper>
-      <div className='header-top'>
+    <>
+      <Header className='header-top'>
         <div className='align-items-center section-center'>
           <div className='logo-area'>
             <Link to='/'>
@@ -72,7 +78,10 @@ const Navbar = () => {
           <div className='right-blok-box '>
             <div className='user-wrap'>
               <Link to='/wishlist'>
-                <span className='cart-total'>22</span>
+                {wishListItems.length >= 0 && (
+                  <span className='cart-total'>{wishListItems.length}</span>
+                )}
+
                 <AiOutlineHeart className='heart' />
               </Link>
             </div>
@@ -80,74 +89,83 @@ const Navbar = () => {
             <div className='shopping-cart-wrap'>
               <Link to='/'>
                 <FaShoppingCart className='cart' />
-                <span className='cart-total'>76</span>
+                {cartItems.length >= 0 && (
+                  <span className='cart-total'>{cartItems.length}</span>
+                )}
               </Link>
               <ul className='mini-cart'>
-                <li className='cart-item'>
-                  <div className='cart-image'>
-                    <Link to='product-details.html'>
-                      <img alt='' src='images/hood3.png' />
-                    </Link>
-                  </div>
-                  <div className='cart-title'>
-                    <Link to='product-details.html'>
-                      <h4>Product Name 01</h4>
-                    </Link>
-                    <div className='quanti-price-wrap'>
-                      <span className='quantity'>1 ×</span>
-                      <div className='price-box'>
-                        <span className='new-price'>$130.00</span>
+                {cartItems.map((item) => (
+                  <li className='cart-item'>
+                    <div className='cart-image'>
+                      <Link to={'/product/' + item.product}>
+                        <img src={item.image} alt='' />
+                      </Link>
+                    </div>
+                    <div className='cart-title'>
+                      <Link to={'/product/' + item.product}>
+                        <h4>{item.name}</h4>
+                      </Link>
+                      <div className='quanti-price-wrap'>
+                        <span className='quantity'>1 ×</span>
+                        <div className='price-box'>
+                          <span className='new-price'>
+                            {formatPrice(item.price)}
+                          </span>
+                        </div>
+                      </div>
+                      <div
+                        className='remove_from_cart'
+                        onClick={removeFromCartHandler}
+                      >
+                        <FaTimes />
                       </div>
                     </div>
-                    <Link className='remove_from_cart' to='#'>
-                      <FaTimes />
-                    </Link>
-                  </div>
-                </li>
-                <li className='cart-item'>
-                  <div className='cart-image'>
-                    <Link to='product-details.html'>
-                      <img alt='' src='images/hood3.png' />
-                    </Link>
-                  </div>
-                  <div className='cart-title'>
-                    <Link to='product-details.html'>
-                      <h4>Product Name 03</h4>
-                    </Link>
-                    <div className='quanti-price-wrap'>
-                      <span className='quantity'>1 ×</span>
-                      <div className='price-box'>
-                        <span className='new-price'>$130.00</span>
-                      </div>
-                    </div>
-                    <Link to='#' className='remove_from_cart'>
-                      <FaTimes />
-                    </Link>
-                  </div>
-                </li>
-                <li className='subtotal-box'>
-                  <div className='subtotal-title'>
-                    <h3>Sub-Total :</h3>
-                    <span>$ 260.99</span>
-                  </div>
-                </li>
+                  </li>
+                ))}
+
                 <li className='mini-cart-btns'>
                   <div className='cart-btns'>
                     <Link to='/cart'>View cart</Link>
-                    <Link to='/'>Checkout</Link>
+                    <Link to='/signin?redirect=shipping'>Checkout</Link>
                   </div>
                 </li>
               </ul>
             </div>
-            <div className='user-wrap'>
-              <FaBars className='heart' onClick={openSidebar} />
+
+            <div className='shopping-cart-wrap'>
+              <FaUser className='user-icon' />
+
+              <ul className='mini-cart'>
+                <li className='cart-item'>
+                  <Link to='/profile'>Profile</Link>
+                </li>
+                <li className='cart-item'>
+                  <Link to='/orderhistory'>Orders</Link>
+                </li>
+
+                <li className='mini-cart-btns'>
+                  <div className='cart-btns'>
+                    {userInfo ? (
+                      <span className='signout' onClick={signoutHandler}>
+                        Sign out
+                      </span>
+                    ) : (
+                      <Link to='/signin'>Sign in</Link>
+                    )}
+
+                    {userInfo ? null : <Link to='/register'>Sign up</Link>}
+                  </div>
+                </li>
+              </ul>
             </div>
+
+            <FaBars className='menu-bars' onClick={openSidebar} />
           </div>
         </div>
-      </div>
+      </Header>
 
-      <nav className={'header-bottom'}>
-        <div className='align-items-center section-center'>
+      <Navigation className='header-bottom'>
+        <div className='align-items-center section-center '>
           <div className='main-menu-area '>
             <nav className='main-navigation'>
               <ul className='menu-items-container'>
@@ -155,98 +173,95 @@ const Navbar = () => {
                   <Link to='/'>Home</Link>
                 </li>
                 <li>
-                  <Link to='about-us.html'>About Us</Link>
+                  <Link to='/products'>Products</Link>
                 </li>
                 <li>
-                  <Link to='blog.html'>
+                  <Link to='/about'>About Us</Link>
+                </li>
+                <li>
+                  <Link to=''>
                     Category <FaAngleDown />
                   </Link>
 
                   <ul className='sub-menu'>
                     <li>
-                      <Link to='blog.html'>Blog Left Sidebar</Link>
-                    </li>
-                    <li>
-                      <Link to='blog-right-sidebar.html'>
-                        Blog Right Sidebar
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to='blog-grid.html'>Blog Grid Page</Link>
-                    </li>
-                    <li>
-                      <Link to='blog-largeimage.html'>Blog Large Image</Link>
-                    </li>
-                    <li>
-                      <Link to='blog-details.html'>Blog Details Page</Link>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <Link to='blog.html'>
-                    Admin <FaAngleDown />
-                  </Link>
-
-                  <ul className='sub-menu'>
-                    <li>
-                      <Link to='blog.html'>Blog Left Sidebar</Link>
-                    </li>
-                    <li>
-                      <Link to='blog-right-sidebar.html'>
-                        Blog Right Sidebar
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to='blog-grid.html'>Blog Grid Page</Link>
-                    </li>
-                    <li>
-                      <Link to='blog-largeimage.html'>Blog Large Image</Link>
-                    </li>
-                    <li>
-                      <Link to='blog-details.html'>Blog Details Page</Link>
+                      <Link to={`/`}>hoood</Link>
                     </li>
                   </ul>
                 </li>
 
-                <li>
-                  <Link to='#'>
-                    Account <FaAngleDown />
-                  </Link>
-                  <ul className='sub-menu'>
-                    <li>
-                      <Link to='frequently-questions.html'>FAQ</Link>
-                    </li>
-                    <li>
-                      <Link to='my-account.html'>My Account</Link>
-                    </li>
-                    <li>
-                      <Link to='login-register.html'>login &amp; register</Link>
-                    </li>
-                  </ul>
-                </li>
+                {userInfo && userInfo.isAdmin && (
+                  <li>
+                    <Link to='/'>
+                      Admin <FaAngleDown />
+                    </Link>
+
+                    <ul className='sub-menu'>
+                      <li>
+                        <Link to='/dashboard'> Dashboard</Link>
+                      </li>
+                      <li>
+                        <Link to='/productlist'>Products</Link>
+                      </li>
+                      <li>
+                        <Link to='/orderlist'>Orders</Link>
+                      </li>
+                      <li>
+                        <Link to='/userlist'>Users</Link>
+                      </li>
+                      <li>
+                        <Link to='/support'>Support</Link>
+                      </li>
+                    </ul>
+                  </li>
+                )}
+                {userInfo && userInfo.isSeller && (
+                  <li>
+                    <Link to='#'>
+                      Seller <FaAngleDown />
+                    </Link>
+                    <ul className='sub-menu'>
+                      <li>
+                        <Link to='/productlist/seller'>Products</Link>
+                      </li>
+                      <li>
+                        <Link to='/orderlist/seller'>Orders</Link>
+                      </li>
+                    </ul>
+                  </li>
+                )}
               </ul>
             </nav>
           </div>
         </div>
-      </nav>
+      </Navigation>
       <Sidebar />
-    </Wrapper>
+    </>
   )
 }
 
-const Wrapper = styled.header`
-  position: relative;
+const Header = styled.header`
+  top: 0;
   left: 0;
   right: 0;
-  .header-top {
-    width: 100%;
-    background: var(--clr-blue);
-    border-bottom: 1px solid #fff;
+  height: 9rem;
+  width: 100%;
+  background: var(--clr-blue);
+  border-bottom: 1px solid #fff;
+  z-index: 9;
+  position: fixed;
+  .user-icon {
+    display: none;
   }
-
-  .header-bottom {
-    width: 100%;
-    background: var(--clr-blue);
+  @media screen and (min-width: 768px) {
+    display: block;
+    position: relative;
+    .menu-bars {
+      display: none;
+    }
+    .user-icon {
+      display: block;
+    }
   }
 
   .right-blok-box {
@@ -258,24 +273,20 @@ const Wrapper = styled.header`
   .cart-total {
     background: #c89979;
     border-radius: 100%;
-    color: #ffffff;
+    color: var(--clr-white);
     float: left;
-    font-size: 8px;
+    font-size: 1.7rem;
     font-weight: 500;
-    height: 20px;
-    line-height: 22px;
-    width: 20px;
+    height: 3rem;
+    line-height: 3rem;
+    width: 3rem;
     position: absolute;
     text-align: center;
     text-transform: capitalize;
-    top: -10px;
-    right: -0px;
+    top: -1.8rem;
+    right: -6px;
   }
-  .user-wrap {
-    padding-right: 10px;
-    font-size: 20px;
-    position: relative;
-  }
+
   .user-wrap.box-user {
     padding: 8px 12px;
     border-radius: 3px;
@@ -294,15 +305,24 @@ const Wrapper = styled.header`
     border: 2px solid #c89979;
     background: #c89979;
   }
-  .box-cart-wrap .shopping-cart-wrap a:hover {
+  .shopping-cart-wrap a:hover {
     color: #fff;
   }
-  .box-cart-wrap #cart-total {
+  #cart-total {
     background: #0e7346;
   }
   .heart,
-  .cart {
+  .cart,
+  .menu-bars,
+  .user-icon {
+    font-size: 2.7rem;
     color: var(--clr-white);
+  }
+
+  .menu-bars,
+  .cart,
+  .user-icon {
+    margin-left: 1.8rem;
   }
   .shopping-cart-wrap {
     position: relative;
@@ -319,7 +339,6 @@ const Wrapper = styled.header`
     z-index: 99;
     visibility: hidden;
     opacity: 0;
-    -ms-filter: 0;
     transition: all 0.3s ease-in-out;
   }
   @media only screen and (max-width: 479px) {
@@ -376,30 +395,14 @@ const Wrapper = styled.header`
     text-decoration: line-through;
   }
   .remove_from_cart {
-    background: none;
-    color: #666 !important;
-    display: block;
-    font-size: 0;
-    height: auto;
-    left: auto;
-    margin: 0;
     position: absolute;
     right: 0;
     top: 0;
-    padding-right: 0;
-    width: auto;
-    z-index: 1;
-  }
-  .shopping-cart-wrap
-    ul.mini-cart
-    .cart-item
-    .cart-title
-    .remove_from_cart::before {
-    content: '';
-    font-size: 18px;
-    font-family: simple-line-icons;
     color: #555;
-    right: 0;
+  }
+
+  .remove_from_cart svg {
+    font-size: 2rem;
   }
   .subtotal-box {
     border-top: 1px solid #ddd;
@@ -431,7 +434,6 @@ const Wrapper = styled.header`
   .shopping-cart-wrap:hover ul.mini-cart {
     visibility: visible;
     opacity: 1;
-    -ms-filter: 1;
     top: 160%;
   }
 
@@ -467,7 +469,13 @@ const Wrapper = styled.header`
     padding-top: 15px;
     width: 100%;
   }
-  .mini-cart-btns .cart-btns a {
+
+  .mini-cart-btns {
+    border-top: 1px solid #ddd;
+  }
+
+  .cart-btns a,
+  .signout {
     margin-bottom: 10px;
     background: #eef0f1;
     border: 1px solid #e1e1e1;
@@ -481,8 +489,11 @@ const Wrapper = styled.header`
     padding: 0 25px;
     text-align: center;
     text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
   }
-  .mini-cart-btns .cart-btns a:hover {
+  .cart-btns a:hover,
+  .signout:hover {
     background: #c89979;
     border: 1px solid #c89979;
     color: #ffffff;
@@ -491,6 +502,7 @@ const Wrapper = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100%;
   }
   .nav-logo {
     width: 8rem;
@@ -499,7 +511,22 @@ const Wrapper = styled.header`
   .right-blok-box {
     display: flex;
   }
+`
 
+const Navigation = styled.nav`
+  position: sticky;
+  top: 0;
+  display: none;
+  width: 100%;
+  height: 6rem;
+  background: var(--clr-blue);
+  z-index: 5;
+  @media screen and (min-width: 768px) {
+    display: block;
+    .menu-bars {
+      display: none;
+    }
+  }
   .main-menu-area {
     width: 100%;
   }
@@ -549,8 +576,6 @@ const Wrapper = styled.header`
     bottom: 0;
     left: 0;
     opacity: 0;
-    -ms-filter: 0;
-    -webkit-transition: 0.4s;
     transition: 0.4s;
   }
   .main-menu-area ul > li:first-child {
@@ -576,100 +601,42 @@ const Wrapper = styled.header`
     padding: 32px 0px;
   }
 
-  .main-menu-area .sub-menu {
+  .sub-menu {
     background: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--dark-shadow);
     left: 0;
     padding: 15px;
     position: absolute;
     text-align: left;
     width: 200px;
     z-index: 99;
-    top: 120%;
+    top: 6rem;
     visibility: hidden;
     opacity: 0;
-    -ms-filter: 0;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-    border: 2px solid red;
+    transition: var(--transition);
   }
 
-  .main-menu-area .mega-menu {
-    background: #ffffff;
-    left: 0;
-    padding: 30px 20px;
-    position: absolute;
-    text-align: left;
-    width: 640px;
-    z-index: 99;
-    top: 120%;
-    visibility: hidden;
-    opacity: 0;
-    -ms-filter: 0;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-
-  .main-menu-area .sub-menu > li {
+  .sub-menu > li {
     padding: 0 0 !important;
     margin-right: 0px;
     display: block;
   }
-  .main-menu-area .sub-menu > li:first-child {
+  .sub-menu > li:first-child {
     margin-bottom: 0;
   }
-  .main-menu-area .sub-menu > li > a {
+  .sub-menu > li > a {
     padding: 0;
     font-weight: 400;
     margin-bottom: 8px;
     color: #333 !important;
     text-transform: capitalize;
   }
-  .main-menu-area .sub-menu > li > a::before {
-    display: none;
-  }
-
-  .main-menu-area .mega-menu > li {
-    width: 33.333%;
-    float: left;
-    padding: 0 !important;
-    margin-right: 0px;
-  }
-  .main-menu-area .mega-menu > li > a {
-    padding: 0;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    color: #333 !important;
-  }
-  .main-menu-area .mega-menu > li > a::before {
-    display: none;
-  }
-  .main-menu-area .mega-menu > li ul > li {
-    display: block;
-    padding: 0;
-    margin-right: 0;
-  }
-  .main-menu-area .mega-menu > li ul > li a {
-    padding: 0;
-    color: #333 !important;
-    text-transform: capitalize;
-    display: block;
-    font-weight: 400;
-    margin-top: 8px;
-  }
-  .main-menu-area .mega-menu > li ul > li a::before {
+  .sub-menu > li > a::before {
     display: none;
   }
 
   .hader-mid-right-box {
     display: flex;
-  }
-
-  @media screen and (min-width: 768px) {
-    .header-bottom {
-      display: block;
-    }
   }
 `
 

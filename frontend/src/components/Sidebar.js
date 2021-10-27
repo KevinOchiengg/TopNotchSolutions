@@ -38,7 +38,7 @@ const Sidebar = () => {
         isSidebarOpen ? 'sidebar-wrapper open' : 'sidebar-wrapper'
       }`}
     >
-      <div className='off-canvas-overlay'></div>
+      <div className='overlay'></div>
       <div className='off-canvas-inner-content'>
         <div className='btn-close-off-canvas'>
           <FaTimes onClick={closeSidebar} />
@@ -58,131 +58,133 @@ const Sidebar = () => {
             <nav>
               <ul className='mobile-menu'>
                 <li className='menu-item-has-children'>
-                  <a href='#'>Home</a>
+                  <Link to='#'>Home</Link>
                   <ul className='dropdown'>
                     <li>
-                      <a href='index.html'>Home Page 1</a>
+                      <Link to='index.html'>Home Page 1</Link>
                     </li>
                     <li>
-                      <a href='index-2.html'>Home Page 2</a>
+                      <Link to='index-2.html'>Home Page 2</Link>
                     </li>
                   </ul>
                 </li>
                 <li className='menu-item-has-children'>
-                  <a href='#'>Shop</a>
+                  <Link to='#'>Shop</Link>
                   <ul className='megamenu dropdown'>
                     <li className='mega-title has-children'>
-                      <a href='#'>Shop Layouts</a>
+                      <Link to='#'>Shop Layouts</Link>
                       <ul className='dropdown'>
                         <li>
-                          <a href='shop.html'>Shop Left Sidebar</a>
+                          <Link to='shop.html'>Shop Left Sidebar</Link>
                         </li>
                         <li>
-                          <a href='shop-right-sidebar.html'>
+                          <Link to='shop-right-sidebar.html'>
                             Shop Right Sidebar
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href='shop-list-left.html'>
+                          <Link to='shop-list-left.html'>
                             Shop List Left Sidebar
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href='shop-list-right.html'>
+                          <Link to='shop-list-right.html'>
                             Shop List Right Sidebar
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href='shop-fullwidth.html'>Shop Full Width</a>
+                          <Link to='shop-fullwidth.html'>Shop Full Width</Link>
                         </li>
                       </ul>
                     </li>
                     <li className='mega-title has-children'>
-                      <a href='#'>Product Details</a>
+                      <Link to='#'>Product Details</Link>
                       <ul className='dropdown'>
                         <li>
-                          <a href='product-details.html'>
+                          <Link to='product-details.html'>
                             Single Product Details
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href='variable-product-details.html'>
+                          <Link to='variable-product-details.html'>
                             Variable Product Details
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href='affiliate-product-details.html'>
+                          <Link to='affiliate-product-details.html'>
                             affiliatel Product Details
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href='gallery-product-details.html'>
+                          <Link to='gallery-product-details.html'>
                             Gallery Product Details
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </li>
                     <li className='mega-title has-children'>
-                      <a href='#'>Shop Pages</a>
+                      <Link to='#'>Shop Pages</Link>
                       <ul className='dropdown'>
                         <li>
-                          <a href='error404.html'>Error 404</a>
+                          <Link to='error404.html'>Error 404</Link>
                         </li>
                         <li>
-                          <a href='compare.html'>Compare Page</a>
+                          <Link to='compare.html'>Compare Page</Link>
                         </li>
                         <li>
-                          <a href='cart.html'>Cart Page</a>
+                          <Link to='cart.html'>Cart Page</Link>
                         </li>
                         <li>
-                          <a href='checkout.html'>Checkout Page</a>
+                          <Link to='checkout.html'>Checkout Page</Link>
                         </li>
                         <li>
-                          <a href='wishlist.html'>Wish List Page</a>
+                          <Link to='wishlist.html'>Wish List Page</Link>
                         </li>
                       </ul>
                     </li>
                   </ul>
                 </li>
                 <li className='menu-item-has-children'>
-                  <a href='#'>Blog</a>
+                  <Link to='#'>Blog</Link>
                   <ul className='dropdown'>
                     <li>
-                      <a href='blog.html'>Blog Left Sidebar</a>
+                      <Link to='blog.html'>Blog Left Sidebar</Link>
                     </li>
                     <li>
-                      <a href='blog-right-sidebar.html'>Blog Right Sidebar</a>
+                      <Link to='blog-right-sidebar.html'>
+                        Blog Right Sidebar
+                      </Link>
                     </li>
                     <li>
-                      <a href='blog-grid.html'>Blog Grid Page</a>
+                      <Link to='blog-grid.html'>Blog Grid Page</Link>
                     </li>
                     <li>
-                      <a href='blog-largeimage.html'>Blog Large Image</a>
+                      <Link to='blog-largeimage.html'>Blog Large Image</Link>
                     </li>
                     <li>
-                      <a href='blog-details.html'>Blog Details Page</a>
+                      <Link to='blog-details.html'>Blog Details Page</Link>
                     </li>
                   </ul>
                 </li>
                 <li className='menu-item-has-children'>
-                  <a href='#'>Pages</a>
+                  <Link to='#'>Pages</Link>
                   <ul className='dropdown'>
                     <li>
-                      <a href='frequently-questions.html'>FAQ</a>
+                      <Link to='frequently-questions.html'>FAQ</Link>
                     </li>
                     <li>
-                      <a href='my-account.html'>My Account</a>
+                      <Link to='my-account.html'>My Account</Link>
                     </li>
                     <li>
-                      <a href='login-register.html'>login &amp; register</a>
+                      <Link to='login-register.html'>login &amp; register</Link>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a href='about-us.html'>About Us</a>
+                  <Link to='about-us.html'>About Us</Link>
                 </li>
                 <li>
-                  <a href='contact-us.html'>Contact</a>
+                  <Link to='contact-us.html'>Contact</Link>
                 </li>
               </ul>
             </nav>
@@ -191,18 +193,18 @@ const Sidebar = () => {
           <div className='offcanvas-widget-area'>
             <div className='top-info-wrap'>
               <h5>My Account</h5>
-              <ul className='offcanvas-account-container'>
+              <ul className='offcanvas-account-container dropdown'>
                 <li>
-                  <a href='my-account.html'>My account</a>
+                  <Link to='my-account.html'>My account</Link>
                 </li>
                 <li>
-                  <a href='cart.html'>Cart</a>
+                  <Link to='cart.html'>Cart</Link>
                 </li>
                 <li>
-                  <a href='wishlist.html'>Wishlist</a>
+                  <Link to='wishlist.html'>Wishlist</Link>
                 </li>
                 <li>
-                  <a href='checkout.html'>Checkout</a>
+                  <Link to='checkout.html'>Checkout</Link>
                 </li>
               </ul>
             </div>
@@ -259,47 +261,6 @@ const Wrapper = styled.aside`
     position: relative;
   }
 
-  .mobile-menu .has-children .menu-expand,
-  .mobile-menu .menu-item-has-children .menu-expand {
-    line-height: 50;
-    top: -5px;
-    left: 95%;
-    width: 30px;
-    position: absolute;
-    height: 50px;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .mobile-menu .has-children .menu-expand i,
-  .mobile-menu .menu-item-has-children .menu-expand i {
-    display: block;
-    position: relative;
-    width: 10px;
-    margin-top: 25px;
-    border-bottom: 1px solid #252525;
-    -webkit-transition: all 250ms ease-out;
-    -o-transition: all 250ms ease-out;
-    transition: all 250ms ease-out;
-  }
-
-  .mobile-menu .has-children .menu-expand i:before,
-  .mobile-menu .menu-item-has-children .menu-expand i:before {
-    top: 0;
-    width: 100%;
-    content: '';
-    display: block;
-    position: absolute;
-    transform: rotate(90deg);
-    border-bottom: 1px solid #252525;
-    transition: 0.4s;
-  }
-
-  .mobile-menu .has-children.active > .menu-expand i:before,
-  .mobile-menu .menu-item-has-children.active > .menu-expand i:before {
-    transform: rotate(0);
-  }
-
   .search-box-offcanvas {
     margin-bottom: 10px;
   }
@@ -343,7 +304,7 @@ const Wrapper = styled.aside`
     height: 100%;
   }
 
-  .off-canvas-overlay {
+  .overlay {
     background-color: rgba(0, 0, 0, 0.4);
     content: '';
     cursor: url('../images/icon/cancel.png'), auto;
@@ -360,7 +321,6 @@ const Wrapper = styled.aside`
     padding: 30px;
     height: 100%;
     position: relative;
-    transform: translateX(calc(-100% - 50px));
     transition: 0.4s;
   }
 

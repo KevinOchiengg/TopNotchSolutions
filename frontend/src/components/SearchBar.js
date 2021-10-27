@@ -36,8 +36,7 @@ const SearchBar = (props) => {
 
 const Wrapper = styled.section`
   display: none;
-  max-width: 670px;
-
+  width: 35%;
   @media screen and (min-width: 768px) {
     display: block;
   }
