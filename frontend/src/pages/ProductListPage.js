@@ -73,8 +73,9 @@ export default function ProductListPage(props) {
   return (
     <Wrapper>
       <div className='section-center'>
-        <h3 className='sub-heading'>products</h3>
-        <h1 className='heading'>Product list</h1>
+        <h1 className='heading'>
+          <span>Product</span>list
+        </h1>
         <div className='row'>
           <button type='button' className='btn' onClick={createHandler}>
             Create Product

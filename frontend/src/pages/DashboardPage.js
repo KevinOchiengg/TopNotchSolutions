@@ -19,8 +19,9 @@ export default function DashboardPage() {
   return (
     <Wrapper>
       <div className='section-center'>
-        <h3 className='sub-heading'>dashbord</h3>
-        <h1 className='heading'>Your dashbord</h1>
+        <h1 className='heading'>
+          <span>Your</span>dashbord
+        </h1>
         <div className='dashbord-container'>
           {loading ? (
             <Loading />

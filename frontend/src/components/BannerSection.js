@@ -8,13 +8,13 @@ const BannerSection = () => {
       <div className='section-center row'>
         <div className='single-banner'>
           <Link to='/products'>
-            <img src='images/banner-04.jpg' alt='banner' />
+            <img src='images/banner5.png' alt='banner' />
           </Link>
         </div>
 
         <div className='single-banner'>
           <Link to='/products'>
-            <img src='images/banner-03.jpg' alt='banner' />
+            <img src='images/menu-img5.jpg' alt='banner' />
           </Link>
         </div>
       </div>

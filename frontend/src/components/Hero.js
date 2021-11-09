@@ -1,27 +1,54 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper'
 import styled from 'styled-components'
+import data from '../data/heroSlides'
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 
 const Hero = () => {
+  const [slides, setPeople] = useState(data)
+  SwiperCore.use([Autoplay, Pagination, Navigation])
+
   return (
-    <Wrapper className='hero'>
-      <div className='section__center'>
-        <div className='hero__container'>
-          <h3>
-            Welcome To <span>Integro</span> <br />
-            Wears<span>.</span>
-          </h3>
-          <p>
-            Switch Your Swag Mode On & Dress like you <br />
-            already famous
-          </p>
-          <div>
-            <Link to='/products' className='btn'>
-              Shop Now &#8594;
-            </Link>
-          </div>
-        </div>
-      </div>
+    <Wrapper>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 7500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+          el: '.swiper-pagination',
+        }}
+        navigation={true}
+        className='home-slider section-center'
+      >
+        {slides.map((slide) => {
+          const { id, image, title, text } = slide
+
+          return (
+            <SwiperSlide key={id} className='wrapper'>
+              <div className='swiper-slide slide'>
+                <div className='content'>
+                  <span>our special offer</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                  <Link to='/products' className='btn'>
+                    order now
+                  </Link>
+                </div>
+                <div className='image'>
+                  <img src={image} alt='' />
+                </div>
+              </div>
+              <div className='swiper-pagination'></div>
+            </SwiperSlide>
+          )
+        })}
+      </Swiper>
     </Wrapper>
   )
 }
@@ -29,87 +56,57 @@ const Hero = () => {
 export default Hero
 
 const Wrapper = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  font-family: 'Playfair Display', serif;
-  width: 100%;
-  height: 90vh;
-  background: linear-gradient(
-      0deg,
-      rgba(39, 55, 85, 0.7),
-      rgba(39, 55, 85, 0.7)
-    ),
-    url(../../images/background/hero.jpg);
-
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-
-  .section__center {
-    max-width: var(--max-width);
-    padding: 0 1.4rem;
-    height: 100%;
-    width: 100%;
-  }
-  br {
-    display: none;
-  }
-  .container {
-    max-width: var(--max-width);
-    margin: auto;
-    padding: 0 1.4em;
-  }
-
-  .btn {
-    padding: 1rem 3.5rem;
-    margin-top: 2rem;
-    font-size: 2rem;
-  }
-  .hero__container {
+  .home-slider .slide {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .home-slider .slide .content {
+    flex: 1 1 45rem;
+  }
+
+  .home-slider .slide .image {
+    flex: 1 1 45rem;
+  }
+
+  .home-slider .slide .image img {
     width: 100%;
   }
 
-  span {
-    color: var(--clr-yellow);
+  .home-slider .slide .content span {
+    color: var(--green);
+    font-size: 2.5rem;
   }
 
-  h3 {
-    font-size: 5rem;
-    line-height: 1.2em;
-    margin: 1em 0 0 0;
-    color: var(--clr-light-yellow);
+  .home-slider .slide .content h3 {
+    color: var(--clr-blue);
+    font-size: 7rem;
   }
 
-  p {
+  .home-slider .slide .content p {
+    color: var(--light-color);
     font-size: 2.2rem;
     padding: 0.5rem 0;
     line-height: 1.5;
-    color: var(--clr-light-yellow);
-    letter-spacing: var(--spacing);
   }
 
-  @media (min-width: 768px) {
-    .menu-icon {
-      display: block;
-      cursor: pointer;
+  .swiper-pagination-bullet-active {
+    background: var(--green);
+  }
+  @media (max-width: 991px) {
+    .home-slider .slide .content h3 {
+      font-size: 5rem;
     }
+    padding-top: 15rem;
+  }
 
-    h3 {
-      font-size: 8rem;
+  @media (max-width: 450px) {
+    .home-slider .slide .content h3 {
+      color: var(--black);
+      font-size: 5rem;
     }
-
-    p {
-      line-height: 1.5em;
-      color: var(--clr-light-yellow);
-    }
-    br {
-      display: block;
-    }
+    padding-top: 15rem;
   }
 `

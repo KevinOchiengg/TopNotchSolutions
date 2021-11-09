@@ -10,7 +10,7 @@ const productRouter = express.Router()
 productRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
-    const pageSize = 12
+    const pageSize = 10
     const page = Number(req.query.pageNumber) || 1
     const name = req.query.name || ''
     const category = req.query.category || ''
@@ -110,10 +110,12 @@ productRouter.post(
   isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = new Product({
-      image: '/images/lofers.jpg',
+      image: '/images/hero2.jpg',
       name: 'Shipped Fashion Men PU Leather Casual Shoes Loafers Shoes-white',
       description:
         'This pair in addition to being comfortable is verystylish. A must have for the classic man. We have got the best prices and service.This shoes is more convenient to wear shoes, showing a uniform and smooth line texture, simple and generous.Lightweight rubber outsole: with a soft, cushioned rubber sole for an elegant, stylish and simple. Clear texture design, Strong grip, non-slip, wear-resistant. So durable rubber outsole delivers traction on a variety of surfaces. Comfortable and delicate fabric: exudes natural luster, highlights the quality, and shows mens casual style. Comfortable lining: According to ergonomics, the inner part is made of breathable and foot-fitting material, so that your feet can keep breathing smoothly and easily meet the needs of life.Simple and Fashionable, Soft and Comfortable, Lightweight and wear-resistant，it is perfect for daily use.This classic monk single buckle shoes features Leather upper, slip on design for easy on/off wear, and monk shoes detailing on side for added style. Moreover, It is finished with smooth leather Lining, cushioned footbed for comfort, and non-skid outsole. This kind of shoes you wear, jeans or pants collocation, make you reflect the tough temperament!Featuring durable outsoles that enable easy traction, it is also very comfortable. A perfect match with semi-casual and official outfits.If you were not satisfied with something please contact us before you leave us a Negative feedback.we will always try our best for 100% customer satisfaction.Thats why we are here! All emails will be answered within 48 hours (Sat. & Sun. excluded). So please do not hesitate to email us!The size of this shoe is a bit too small, please buy a size larger than the usual shoes.',
+      specification:
+        'Integrated USB charging port, hidden zipper closures,	Water repellent fabric,	Weight balance & luggage strap,Interior slot pockets & Interior compartment Advanced storage design, SKU: FA113EA03YBEVNAFAMZ, Model: ATB,	Size (L x W x H cm): 46 x 31 x 15,	Weight (kg): 0.8,	Main Material: polyester,	Care Label: handle with care',
       rating: 4,
       price: 1600,
       numReviews: 10,
@@ -140,6 +142,7 @@ productRouter.put(
       product.brand = req.body.brand
       product.countInStock = req.body.countInStock
       product.description = req.body.description
+      product.specification = req.body.specification
       const updatedProduct = await product.save()
       res.send({ message: 'Product Updated', product: updatedProduct })
     } else {

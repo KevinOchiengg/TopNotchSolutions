@@ -31,7 +31,7 @@ function FeaturedProducts() {
           <Loading />
         ) : (
           <div className='featured'>
-            {products.slice(0, 8).map((product) => {
+            {products.slice(0, 9).map((product) => {
               return <Product key={product._id} product={product} />
             })}
           </div>

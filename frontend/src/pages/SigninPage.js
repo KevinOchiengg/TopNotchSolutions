@@ -4,15 +4,6 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { signin } from '../actions/userActions'
 import Loading from '../components/Loading'
-
-import {
-  FaFacebook,
-  FaTwitter,
-  FaGoogle,
-  FaLock,
-  FaEnvelope,
-  FaRegUserCircle,
-} from 'react-icons/fa'
 import Message from '../components/Message'
 
 const SigninPage = () => {
@@ -47,221 +38,127 @@ const SigninPage = () => {
 
   return (
     <Wrapper>
-      <div className='section-center'>
-        <div className='form'>
-          <div className='header'>
-            <FaRegUserCircle />
-            <h4>Login</h4>
-          </div>
-          <form onSubmit={submitHandler} className='form-content'>
-            <div className='field-container'>
-              <FaEnvelope />
-
-              <input
-                type='email'
-                id='email'
-                placeholder='Enter email'
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-
-            <div className='field-container'>
-              <FaLock />
-              <input
-                type='password'
-                id='password'
-                placeholder='Enter password'
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              ></input>
-            </div>
-            <div className='forgot-password'>
-              <Link to='/profile'>Forgot password?</Link>
-            </div>
-            {loading && <Loading />}
-            {error && (
-              <Message
-                variant='danger'
-                message='Invalid email or password '
-                name='hide'
-              />
-            )}
-            <button type='submit' className='btn'>
-              Sign In
-            </button>
-          </form>
-          <div className='strike'>
-            <span>OR</span>
-          </div>
-
-          <div className='sign-in-using'>
-            <h6>sign in using:</h6>
-          </div>
-          <div className='alternate-logins-cotainer'>
-            <Link to='/'>
-              <FaFacebook />
-            </Link>
-
-            <Link to='/'>
-              <FaTwitter />
-            </Link>
-            <Link to='/'>
-              <FaGoogle />
-            </Link>
-          </div>
-
-          <div className='register-text-container'>
-            <p>Don't have an account?</p>
-            <Link to={`/register?redirect=${redirect}`}>
-              <h6>Register</h6>
-            </Link>
-          </div>
+      <form className='section-center' onSubmit={submitHandler}>
+        <h3>login form</h3>
+        <input
+          type='email'
+          placeholder='enter your email'
+          className='box'
+          required
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type='password'
+          placeholder='enter your password'
+          className='box'
+          required
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div className='remember'>
+          <input type='checkbox' name='' id='remember-me' />
+          <label for='remember-me'>remember me</label>
         </div>
-      </div>
+        {loading && <Loading />}
+        {error && (
+          <Message
+            variant='danger'
+            message='Invalid email or password '
+            name='hide'
+          />
+        )}
+        <input type='submit' value='login now' className='btn' />
+        <p>
+          forgot password? <Link to='#'>click here</Link>
+        </p>
+        <p>
+          don't have an account?
+          <Link to={`/register?redirect=${redirect}`}>create now</Link>
+        </p>
+      </form>
     </Wrapper>
   )
 }
 export default SigninPage
 
 const Wrapper = styled.section`
-  margin: 12rem 0;
-  color: var(--clr-light-grey);
-  .btn {
-    width: 50%;
+  height: 100vh;
+  background: #fff;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+
+  form {
+    max-width: 90%;
+    padding: 1.7rem;
+    border: 0.1rem solid #244d4d;
   }
 
-  .form-content {
-    text-align: center;
-    margin: 3rem auto 0 auto;
+  @media screen and (min-width: 800px) {
+    form {
+      max-width: 35%;
+    }
   }
-  .btn-hide {
-    display: none;
+
+  form h3 {
+    font-size: 2.2rem;
+    padding-bottom: 1rem;
+    color: #244d4d;
   }
-  .form {
-    border-radius: 4px;
-    box-shadow: var(--dark-shadow);
-    padding: 0.5rem;
+
+  form .box {
     width: 100%;
-    height: auto;
-    transition: var(--transition);
-    margin: 2rem auto;
+    text-transform: none;
+    font-size: 1.5rem;
+    color: #244d4d;
+    padding: 1rem 1.2rem;
+    border: 0.1rem solid #244d4d;
+    margin: 0.7rem 0;
   }
-  .field-container {
+
+  form .remember {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    border-bottom: 1px solid var(--clr-light-grey);
-    width: 90%;
-    margin: 2rem auto;
-    font-size: 2rem;
+    gap: 0.5rem;
   }
-
-  svg {
-    margin-right: 10px;
+  #remember-me {
+    height: 1.7rem;
+    width: 1.7rem;
   }
-
-  input[type='email'],
-  input[type='password'],
-  input[type='text'] {
-    border-radius: none;
-    border: none;
-    color: var(--clr-blue);
-    font-size: 2rem;
-    padding: 6px;
-    width: 100%;
-  }
-
-  .alternate-logins-cotainer {
-    display: flex;
-    margin-top: 1rem;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .alternate-logins-cotainer svg {
-    font-size: 2rem;
-    color: var(--clr-blue);
-    margin: 0 1rem;
-  }
-  .forgot-password {
+  form .remember label {
+    padding: 1rem 0;
+    cursor: pointer;
     font-size: 1.7rem;
-  }
-  .strike {
-    display: block;
-    margin-top: 12px;
-    margin-bottom: 12px;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
+    color: #779;
   }
 
-  .strike > span {
-    position: relative;
-    display: inline-block;
-    font-size: 1.6rem;
-  }
-
-  .header h4 {
-    margin-top: 1rem;
-    color: var(--clr-blue);
-  }
-
-  .header {
-    font-size: 2.8rem;
-  }
-
-  .header svg,
-  h4 {
-    margin: 0 auto;
-  }
-
-  .header svg {
-    font-size: 4rem;
-  }
-  .strike > span:before,
-  .strike > span:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 525%;
-    height: 1px;
-    background: var(--clr-light-grey);
-  }
-
-  .strike > span:before {
-    right: 100%;
-    margin-right: 15px;
-  }
-
-  .strike > span:after {
-    left: 100%;
-    margin-left: 15px;
-  }
-
-  .sign-in-using h6 {
-    margin: 0 auto;
-    font-size: 2rem;
-  }
-  .register-text-container {
+  form .btn {
+    margin: 1rem 0;
+    width: 100%;
     text-align: center;
   }
-  .register-text-container p {
-    font-size: 2rem;
+
+  form p {
+    padding-top: 1rem;
+    font-size: 1.7rem;
+    color: #779;
   }
-  .register-text-container h6 {
-    font-size: 2rem;
+
+  form p a {
+    color: #244d4d;
+  }
+
+  form p a:hover {
     text-decoration: underline;
-    color: var(--clr-blue);
-  }
-  @media only screen and (min-width: 800px) {
-    .form {
-      width: 40%;
-    }
-
-    .field-container {
-      width: 80%;
-    }
   }
 `

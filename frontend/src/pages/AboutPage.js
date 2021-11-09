@@ -4,12 +4,12 @@ import styled from 'styled-components'
 const AboutPage = () => {
   return (
     <Wrapper>
-      <section class='about section-center'>
-        <div class='image'>
+      <section className='about section-center'>
+        <div className='image'>
           <img src='images/about-img.jpg' alt='' />
         </div>
 
-        <div class='content'>
+        <div className='content'>
           <span>welcome to our shop</span>
           <h3>we make your home more astonishing</h3>
           <p>
@@ -24,13 +24,13 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section class='services section-center'>
-        <h1 class='title'>
+      <section className='services section-center'>
+        <h1 className='title'>
           <span>our services</span> <a href='#'>view all </a>
         </h1>
 
-        <div class='box-container'>
-          <div class='box'>
+        <div className='box-container'>
+          <div className='box'>
             <img src='images/serv-1.svg' alt='' />
             <h3>computer selling</h3>
             <p>
@@ -39,7 +39,7 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div class='box'>
+          <div className='box'>
             <img src='images/serv-2.svg' alt='' />
             <h3>computer repair</h3>
             <p>
@@ -48,7 +48,7 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div class='box'>
+          <div className='box'>
             <img src='images/serv-3.svg' alt='' />
             <h3>24 / 7 support</h3>
             <p>
@@ -64,20 +64,13 @@ const AboutPage = () => {
 
 const Wrapper = styled.section`
   .about {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     gap: 2rem;
   }
 
   .about .image {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 40rem;
     flex: 1 1 40rem;
   }
 
@@ -86,8 +79,6 @@ const Wrapper = styled.section`
   }
 
   .about .content {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 40rem;
     flex: 1 1 40rem;
   }
 
@@ -110,9 +101,7 @@ const Wrapper = styled.section`
   }
 
   .services .box-container {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (minmax(30rem, 1fr)) [auto-fit];
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 1.5rem;
   }

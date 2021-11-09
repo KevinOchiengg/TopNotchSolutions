@@ -142,7 +142,7 @@ orderRouter.put(
         .messages()
         .send(
           {
-            from: 'Integrowears <kevinochieng932@gmail.com>',
+            from: 'Topnotchsolution <kevinochieng932@gmail.com>',
             to: `${order.user.name} <${order.user.email}>`,
             subject: `New order ${order._id}`,
             html: payOrderEmailTemplate(order),

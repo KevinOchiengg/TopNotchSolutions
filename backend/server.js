@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 console.log('sv' + '' + process.env.MONGODB_URL)
 
 mongoose.connect(
-  process.env.MONGODB_URL || 'mongodb://localhost/integrowear',
+  process.env.MONGODB_URL || 'mongodb://localhost/topnotchsolution',
 
   {
     useNewUrlParser: true,
@@ -30,11 +30,6 @@ mongoose.connect(
   }
 )
 
-// mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/integrowear', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useCreateIndex: true,
-// })
 app.use('/api/uploads', uploadRouter)
 app.use('/api/users', userRouter)
 app.use('/api/products', productRouter)

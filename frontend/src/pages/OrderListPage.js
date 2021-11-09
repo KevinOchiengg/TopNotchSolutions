@@ -33,8 +33,9 @@ export default function OrderListPage(props) {
   return (
     <Wrapper>
       <div className='section-center'>
-        <h3 className='sub-heading'>Orders</h3>
-        <h1 className='heading'>Your Orders</h1>
+        <h1 className='heading'>
+          <span>Your</span>orders
+        </h1>
         <div className='row'>
           {loadingDelete && <Loading />}
           {errorDelete && (

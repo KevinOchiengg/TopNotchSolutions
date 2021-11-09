@@ -17,13 +17,13 @@ import { signout } from '../actions/userActions'
 import styled from 'styled-components'
 import { withRouter } from 'react-router'
 import logo from '../logo.png'
-import SearchBar from './SearchBar'
 import Sidebar from './Sidebar'
 import { listProductCategories } from '../actions/productActions'
 import { formatPrice } from '../utils/helpers'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const Navbar = (props) => {
+  const [name, setName] = useState('')
   const { openSidebar, openSubmenu, closeSubmenu } = useGlobalContext()
   const [navbar, setNavbar] = useState(false)
   const productId = props.match.params.id
@@ -63,6 +63,11 @@ const Navbar = (props) => {
     dispatch(listProductCategories())
   }, [dispatch])
 
+  const submitHandler = (e) => {
+    e.preventDefault()
+    props.history.push(`/search/name/${name}`)
+  }
+
   return (
     <>
       <Header className='header-top'>
@@ -73,7 +78,21 @@ const Navbar = (props) => {
             </Link>
           </div>
 
-          <SearchBar />
+          <form onSubmit={submitHandler}>
+            <input
+              type='search'
+              name='q'
+              id='q'
+              placeholder='Search product...'
+              onChange={(e) => setName(e.target.value)}
+            />
+
+            <div className='search-btn'>
+              <button>
+                <FaSearch />
+              </button>
+            </div>
+          </form>
 
           <div className='right-blok-box '>
             <div className='user-wrap'>
@@ -252,6 +271,48 @@ const Header = styled.header`
   position: fixed;
   .user-icon {
     display: none;
+  }
+
+  form {
+    display: flex;
+    border-radius: 3px;
+    background: transparent;
+    border: 2px solid transparent;
+    position: relative;
+    display: none;
+    width: 35%;
+  }
+
+  @media screen and (min-width: 768px) {
+    form {
+      display: block;
+    }
+  }
+
+  input {
+    width: 100%;
+    height: 5rem;
+    border: none;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 0 55px 0 30px;
+  }
+
+  .search-btn button {
+    width: 6rem;
+    height: 5rem;
+    font-size: 2.5rem;
+    line-height: 6rem;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    border-radius: 0 3px 3px 0;
+    color: #ffffff;
+    background: #c89979;
+    border: none;
+    transform: translateY(-50%);
   }
   @media screen and (min-width: 768px) {
     display: block;

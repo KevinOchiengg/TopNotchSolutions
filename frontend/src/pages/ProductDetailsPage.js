@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination } from 'swiper'
 import 'swiper/swiper.min.css'
 import styled from 'styled-components'
 import Rating from '../components/Rating'
@@ -66,8 +64,9 @@ const ProductDetailsPage = ({ match, history }) => {
     return (
       <Wrapper>
         <div className='section-center'>
-          <h3 className='sub-heading'>product</h3>
-          <h1 className='heading'>product details</h1>
+          <h1 className='heading'>
+            product <span>details</span>
+          </h1>
           <Loading />
         </div>
       </Wrapper>
@@ -77,8 +76,9 @@ const ProductDetailsPage = ({ match, history }) => {
     return (
       <Wrapper>
         <div className='section-center'>
-          <h3 className='sub-heading'>product</h3>
-          <h1 className='heading'>product details</h1>
+          <h1 className='heading'>
+            product <span>details</span>
+          </h1>
           <Message variant='danger' message='Error loading product details' />
         </div>
       </Wrapper>
@@ -87,8 +87,9 @@ const ProductDetailsPage = ({ match, history }) => {
   return (
     <Wrapper>
       <div className='section-center'>
-        <h3 className='sub-heading'>product</h3>
-        <h1 className='heading'>product details</h1>
+        <h1 className='heading'>
+          product <span>details</span>
+        </h1>
         <div className='product-detail-row row'>
           <div>
             <img src={product.image} alt={product.name} className='image' />
@@ -173,14 +174,16 @@ const ProductDetailsPage = ({ match, history }) => {
           </div>
         </div>
         <div className='description-row'>
-          <h3 className='sub-heading'>description</h3>
-          <h1 className='heading'>Product description</h1>
+          <h1 className='heading'>
+            <span>Product</span>description
+          </h1>
 
           <p>{product.description}</p>
         </div>
         <section className='review' id='review'>
-          <h3 className='sub-heading'>reviews</h3>
-          <h1 className='heading'>product reviews</h1>
+          <h1 className='heading'>
+            <span>Product</span>reviews
+          </h1>
 
           {product.reviews.length === 0 && (
             <Message message='This Product has no review yet...' name='hide' />
@@ -214,8 +217,9 @@ const ProductDetailsPage = ({ match, history }) => {
         {userInfo ? (
           <div className='product-review-form-row'>
             <div className='rating_wrap'>
-              <h3 className='sub-heading'>review</h3>
-              <h1 className='heading'>Add review</h1>
+              <h1 className='heading'>
+                add <span>review</span>
+              </h1>
             </div>
             <form className='comment-form-area' onSubmit={submitHandler}>
               <div className='row'>
