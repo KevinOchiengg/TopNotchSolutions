@@ -63,6 +63,7 @@ const ProductsPage = (props) => {
     <Wrapper>
       <div className='section-center'>
         <div className='products-category-container'>
+          <Filters />
           <div className='products-list-section'>
             <div className='products-list-header'>
               <ul className='nav shop-item-filter-list'>
@@ -118,7 +119,6 @@ const ProductsPage = (props) => {
               ))}
             </div>
           </div>
-          <Filters />
         </div>
       </div>
     </Wrapper>

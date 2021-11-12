@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 
 :root {
-  --clr-yellow: #d77b5d;
-  --clr-light-yellow: #fff8de;
+  --clr-yellow: #ffd741;
+  --clr-light-yellow: #fff5d0;
   --clr-blue: #0f4271;
   --clr-light-blue: #f8f8f8;
-  --clr-white: #e1e1e1;
+  --clr-white: #fff;
   --green: #27ae60;
   --clr-red: hsl(360, 71%, 66%);
   --clr-green: hsl(125, 71%, 66%);
@@ -35,6 +35,7 @@ html {
   font-size: 60%;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  background: var(--clr-white);
 }
 
 img {
@@ -150,6 +151,14 @@ button {
   cursor: pointer;
   border-radius: 0.25rem;
   background: none;
+}
+
+.header-top {
+  background: var(--clr-blue);
+}
+.header-bottom {
+  background: #fff;
+  box-shadow: var(--dark-shadow);
 }
 
 .btn:hover,

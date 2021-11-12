@@ -1,29 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper'
+import SwiperCore, { Autoplay } from 'swiper'
 import styled from 'styled-components'
 import data from '../data/heroSlides'
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 
 const Hero = () => {
-  const [slides, setPeople] = useState(data)
-  SwiperCore.use([Autoplay, Pagination, Navigation])
-
+  const [slides] = useState(data)
+  SwiperCore.use(Autoplay)
   return (
     <Wrapper>
       <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
         autoplay={{
-          delay: 7500,
-          disableOnInteraction: false,
+          delay: 6500,
         }}
-        pagination={{
-          clickable: true,
-          el: '.swiper-pagination',
-        }}
-        navigation={true}
         className='home-slider section-center'
       >
         {slides.map((slide) => {
@@ -76,7 +66,7 @@ const Wrapper = styled.section`
   }
 
   .home-slider .slide .content span {
-    color: var(--green);
+    color: var(--clr-yellow);
     font-size: 2.5rem;
   }
 
@@ -95,6 +85,7 @@ const Wrapper = styled.section`
   .swiper-pagination-bullet-active {
     background: var(--green);
   }
+
   @media (max-width: 991px) {
     .home-slider .slide .content h3 {
       font-size: 5rem;
