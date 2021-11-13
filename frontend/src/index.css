@@ -10,7 +10,7 @@
   --clr-red: hsl(360, 71%, 66%);
   --clr-green: hsl(125, 71%, 66%);
   --clr-light-grey: rgb(168, 168, 168);
-  --clr-dark-grey: #555;
+  --clr-dark-grey: #666;
   --transition: all 0.3s linear;
   --spacing: 0.1rem;
   --radius: 0.25rem;
@@ -140,8 +140,8 @@ li {
   margin-top: 1rem;
   display: inline-block;
   font-size: 1.7rem;
-  color: #fff;
-  background: var(--clr-blue);
+  color: var(--clr-blue);
+  background: var(--clr-yellow);
   border-radius: 0.5rem;
   cursor: pointer;
   padding: 0.8rem 3rem;
@@ -165,7 +165,7 @@ button {
 .btn:focus {
   background: var(--clr-blue);
   color: var(--clr-white);
-  letter-spacing: 0.1rem;
+  transition: var(--transition);
 }
 .heading {
   padding: 1rem 0;
@@ -183,23 +183,17 @@ button {
 }
 
 .title {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
   margin-bottom: 3rem;
-  border-bottom: 0.1rem solid #244d4d;
+  border-bottom: 0.1rem solid #eae6eb;
   padding-bottom: 1.5rem;
 }
 
 .title span {
   font-size: 2.5rem;
-  color: #244d4d;
+  color: var(--clr-blue);
 }
 
 .title a {
@@ -208,7 +202,8 @@ button {
 }
 
 .title a:hover {
-  color: #244d4d;
+  color: var(--clr-yellow);
+  transition: var(--transition);
 }
 
 .form > div {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Autoplay } from 'swiper'
@@ -76,7 +76,7 @@ const Wrapper = styled.section`
   }
 
   .home-slider .slide .content p {
-    color: var(--light-color);
+    color: var(--clr-dark-grey);
     font-size: 2.2rem;
     padding: 0.5rem 0;
     line-height: 1.5;

@@ -25,7 +25,7 @@ const data = {
   ],
   products: [
     {
-      name: 'HP Refurbished Folio 9470M, Core I7, 4GB RAM + 500GB, 14"- Silver & Black',
+      name: 'HP Folio 9470M,',
       category: 'laptop',
       image: '/images/hp-folio.jpg',
       price: 2500,
@@ -40,7 +40,7 @@ const data = {
     },
 
     {
-      name: 'Lenovo 14" - Intel Celeron - 1TB HDD - 4GB RAM - Windows 10 - Black + Cherry Theme',
+      name: 'Lenovo - 4GB RAM ',
       category: 'laptop',
       image: '/images/hp24f3.jpg',
       price: 35000,
@@ -55,7 +55,7 @@ const data = {
     },
 
     {
-      name: 'HP 24f Display-24" Ultra-Slim IPS Full HD+HDMI+VGA',
+      name: 'Ultra-Slim HP 24f',
       category: 'jeans trouser',
       image: '/images/sumsungc22.jpg',
       price: 28000,
@@ -69,7 +69,7 @@ const data = {
         'Display: 14" HD TN	Processor: Intel Celeron	Storage: 1TB HDD	Memory: 4GB RAM	OS: Windows 10 Pro	Bluetooth, WiFi, Webcam	MS OFFICE + LICENSED KASPERSKY ANTIVIRUS',
     },
     {
-      name: 'Samsung C24F390 24-Inch Curved Slim Monitor',
+      name: 'Curved Samsung C24F390 Monitor',
       category: 'monitor',
       image: '/images/sumsungc22.jpg',
       price: 28000,
@@ -84,7 +84,7 @@ const data = {
     },
 
     {
-      name: 'HP 290 G4 Microtower PC - 10th Gen Intel Core I3 - 4GB RAM - 1TB HDD + 18.5" Monitor',
+      name: 'HP 290 G4 Microtower PC',
       category: 'desktop',
       image: '/images/hp-microtower.jpg',
       price: 66999,
@@ -99,7 +99,7 @@ const data = {
     },
 
     {
-      name: 'HP Probook 450 G4 Laptop Charger 19.5V 3.33A Adapter',
+      name: 'HP Laptop Charger',
       category: 'Pants',
       image: '/images/charger.jpg',
       price: 1200,
@@ -114,7 +114,7 @@ const data = {
     },
 
     {
-      name: 'Fashion Blue AntiTheft Backpack Bag X USB Charging Port',
+      name: 'AntiTheft Backpack Bag ',
       category: 'bag',
       image: '/images/joystar3.jpg',
       price: 850,
@@ -129,7 +129,7 @@ const data = {
     },
 
     {
-      name: 'HP Elitebook 840 G1 8GB RAM 1 TB Storage Intel Core I5',
+      name: 'HP Elitebook 840',
       category: 'laptop',
       image: '/images/hp-elite.jpg',
       price: 39000,
@@ -144,7 +144,7 @@ const data = {
     },
 
     {
-      name: 'Lenovo Ideapad 3 14" FHD PC Laptop, Core I5-1035G1, 8GB RAM, 512GB SSD, Platinum Grey',
+      name: 'Lenovo Ideapad',
       category: 'laptop',
       image: '/images/lenovo-ideapad.png',
       price: 79000,
@@ -159,7 +159,7 @@ const data = {
     },
 
     {
-      name: 'DELL XPS 13 7390 2in1/Core I7-1065G7/16GB/512GB SSD/13.4"FHD+WLED',
+      name: 'DELL XPS 1 7390',
       category: 'laptop',
       image: '/images/dell-xps.png',
       price: 255000,
@@ -174,7 +174,7 @@ const data = {
     },
 
     {
-      name: 'Acer Gateway 10th Gen Intel Core I5-1035G1, 16GB RAM 256 SSD',
+      name: 'Acer Gateway',
       category: 'laptop',
       image: '/images/acer.jpg',
       price: 60999,
@@ -189,7 +189,7 @@ const data = {
     },
 
     {
-      name: 'HP EliteDesk 800 G2-Core I5-6500 - 8GB RAM -500GB HDD - 3.2GHz + 19" Monitor - Black',
+      name: 'HP EliteDesk Monitor',
       category: 'desktop',
       image: '/images/hp-elite-desktop.jpg',
       price: 64999,

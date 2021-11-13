@@ -166,5 +166,8 @@ const Wrapper = styled.footer`
       align-items: center;
       flex-wrap: wrap;
     }
+    .credit {
+      font-size: 1.4rem;
+    }
   }
 `

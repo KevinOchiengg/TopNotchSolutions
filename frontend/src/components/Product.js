@@ -38,7 +38,6 @@ export default function Product({ product }) {
 
 const Wrapper = styled.article`
   padding: 2.5rem;
-  background: #fff;
   border-radius: 0.5rem;
   border: 0.1rem solid rgba(0, 0, 0, 0.2);
   box-shadow: var(--dark-shadow);
@@ -61,15 +60,16 @@ const Wrapper = styled.article`
     border-radius: 50%;
     height: 5rem;
     width: 5rem;
-    line-height: 5rem;
+    line-height: 5.8rem;
     font-size: 2rem;
     color: var(--black);
   }
 
   .heart:hover,
   .eye:hover {
-    background: var(--green);
+    background: var(--clr-blue);
     color: #fff;
+    transition: var(--transition);
   }
 
   .heart {
@@ -96,7 +96,7 @@ const Wrapper = styled.article`
   }
 
   .price {
-    color: var(--green);
+    color: var(--clr-blue);
     font-weight: bolder;
     margin-right: 1rem;
     font-size: 2rem;

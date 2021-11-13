@@ -128,8 +128,7 @@ const ProductsPage = (props) => {
 export default ProductsPage
 
 const Wrapper = styled.section`
-  margin: 8rem 0;
-  padding: 4rem 0;
+  margin: 6rem 0;
   font-size: 2rem;
   color: var(--clr-dark-grey);
 

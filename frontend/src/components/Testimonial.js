@@ -40,7 +40,6 @@ function Testimonial() {
         </span>
       </div>
       <h4 className='author'>{name}</h4>
-      <p className='job'>{title}</p>
       <p className='info'>{quote}</p>
       <div className='button-container'>
         <button className='prev-btn' onClick={prevQuote}>
@@ -99,14 +98,14 @@ const Wrapper = styled.article`
     place-items: center;
     border-radius: 50%;
     transform: translateY(25%);
-    background: var(--clr-blue);
+    background: var(--clr-yellow);
     color: var(--clr-white);
   }
   .img-container::before {
     content: '';
     width: 100%;
     height: 100%;
-    background: var(--clr-blue);
+    background: var(--clr-yellow);
     position: absolute;
     top: -0.25rem;
     right: -0.5rem;
@@ -115,7 +114,7 @@ const Wrapper = styled.article`
   .author {
     font-size: 2rem;
     margin-bottom: 0.7rem;
-    color: var(--clr-blue);
+    color: var(--clr-yellow);
   }
   .job {
     margin-bottom: 2rem;

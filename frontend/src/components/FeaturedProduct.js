@@ -25,13 +25,13 @@ function FeaturedProducts() {
     <Wrapper>
       <div className='section-center'>
         <h1 className='title'>
-          <span>Featured Products</span> <Link to='/products'>view all</Link>
+          <span>Featured Products</span> <Link to='/products'>view all </Link>
         </h1>
         {loading ? (
           <Loading />
         ) : (
           <div className='featured'>
-            {products.slice(0, 9).map((product) => {
+            {products.slice(0, 8).map((product) => {
               return <Product key={product._id} product={product} />
             })}
           </div>
@@ -46,7 +46,7 @@ const Wrapper = styled.section`
 
   .featured {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     gap: 1.5rem;
   }
 

@@ -32,8 +32,9 @@ export default function CartPage(props) {
     return (
       <Wrapper>
         <div className='section-center'>
-          <h3 className='sub-heading'>Shopping</h3>
-          <h1 className='heading'>Your Shopping</h1>
+          <h1 className='heading'>
+            Shopping <span>cart</span>
+          </h1>
           <Message
             variant='danger'
             message='Error fetching cart products...'
@@ -49,8 +50,9 @@ export default function CartPage(props) {
     return (
       <Wrapper>
         <div className='section-center'>
-          <h3 className='sub-heading'>Shopping</h3>
-          <h1 className='heading'>Your Shopping</h1>
+          <h1 className='heading'>
+            Shopping <span>cart</span>
+          </h1>
           <Message
             message='Oops! Your Cart is Empty...'
             buttonText='Go Shopping'
@@ -63,8 +65,9 @@ export default function CartPage(props) {
   return (
     <Wrapper>
       <div className='section-center'>
-        <h3 className='sub-heading'>Shopping</h3>
-        <h1 className='heading'>Your Shopping</h1>
+        <h1 className='heading'>
+          Shopping <span>cart</span>
+        </h1>
         <table>
           <thead>
             <tr>
@@ -161,7 +164,7 @@ export default function CartPage(props) {
 }
 
 const Wrapper = styled.section`
-  margin: 12rem 0;
+  margin: 6rem 0;
 
   color: var(--clr-blue);
   table {

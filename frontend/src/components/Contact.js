@@ -15,7 +15,7 @@ const Contact = () => {
             <FaMapMarkerAlt />
           </i>
           <h3>address</h3>
-          <p>Shoppers, nakuru, kenya - 600204</p>
+          <p>Shoppers, Nairobi, Kenya - 600204</p>
         </div>
 
         <div className='icons'>
@@ -23,8 +23,8 @@ const Contact = () => {
             <FaEnvelope />
           </i>
           <h3>email</h3>
-          <p>mosesjuma83@gmail.com</p>
-          <p>integrowears@gmail.com</p>
+          <p>gordonomollo@gmail.com</p>
+          <p>topnotchsolution@gmail.com</p>
         </div>
 
         <div className='icons'>
@@ -33,7 +33,7 @@ const Contact = () => {
           </i>
           <h3>phone</h3>
           <p>+254758231661</p>
-          <p>+254712 312336</p>
+          <p>+254746339929</p>
         </div>
       </div>
 

@@ -83,15 +83,8 @@ export default SigninPage
 const Wrapper = styled.section`
   height: 100vh;
   background: #fff;
-  padding: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 
   form {
