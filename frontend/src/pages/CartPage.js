@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { FaTimes } from 'react-icons/fa'
 import styled from 'styled-components'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 import Message from '../components/Message'
@@ -25,16 +26,13 @@ export default function CartPage(props) {
     dispatch(removeFromCart(id))
   }
 
-  const checkoutHandler = () => {
-    props.history.push('/signin?redirect=shipping')
-  }
   if (error) {
     return (
       <Wrapper>
         <div className='section-center'>
-          <h1 className='heading'>
-            Shopping <span>cart</span>
-          </h1>
+          <h3 className='heading'>
+            <span>your</span>products
+          </h3>
           <Message
             variant='danger'
             message='Error fetching cart products...'
@@ -50,9 +48,9 @@ export default function CartPage(props) {
     return (
       <Wrapper>
         <div className='section-center'>
-          <h1 className='heading'>
-            Shopping <span>cart</span>
-          </h1>
+          <h3 className='heading'>
+            <span>your</span>products
+          </h3>
           <Message
             message='Oops! Your Cart is Empty...'
             buttonText='Go Shopping'
@@ -64,99 +62,63 @@ export default function CartPage(props) {
   }
   return (
     <Wrapper>
-      <div className='section-center'>
-        <h1 className='heading'>
-          Shopping <span>cart</span>
-        </h1>
-        <table>
-          <thead>
-            <tr>
-              <th>PRODUCT</th>
-              <th>QUANTITY</th>
-              <th>SUBTOTAL</th>
-            </tr>
-          </thead>
+      <h3 className='heading'>
+        <span>your</span>products
+      </h3>
+      <div class='products-container section-center'>
+        <div class='box-container'>
+          {cartItems.map((item) => {
+            return (
+              <div class='box'>
+                <FaTimes onClick={() => removeFromCartHandler(item.product)} />
+                <img src={item.image} alt='' />
+                <div class='content'>
+                  <Link to={'/product/' + item.product}>
+                    <h3>{item.name}</h3>
+                  </Link>
+                  <span> quantity : </span>
+                  <select
+                    className='quantity'
+                    value={item.qty}
+                    onChange={(e) =>
+                      dispatch(addToCart(item.product, Number(e.target.value)))
+                    }
+                  >
+                    {[...Array(item.countInStock).keys()].map((x) => (
+                      <option key={x + 1} value={x + 1}>
+                        {x + 1}
+                      </option>
+                    ))}
+                  </select>
 
-          <tbody>
-            {cartItems.map((item) => {
-              return (
-                <tr key={item.name}>
-                  <td>
-                    <div className='cart-info'>
-                      <img src={item.image} alt='' />
-                      <div className='checkout-items'>
-                        <Link to={'/product/' + item.product}>
-                          <h5>{item.name}</h5>
-                        </Link>
+                  <br />
+                  <span> price : </span>
+                  <span class='price'>{formatPrice(item.price)} </span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
 
-                        <p>Price: {formatPrice(item.price)}</p>
+      <div class='cart-total section-center'>
+        <h3 class='title'> cart total </h3>
 
-                        <button
-                          className='btn remove-btn'
-                          onClick={() => removeFromCartHandler(item.product)}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <select
-                      className='quantity'
-                      value={item.qty}
-                      onChange={(e) =>
-                        dispatch(
-                          addToCart(item.product, Number(e.target.value))
-                        )
-                      }
-                    >
-                      {[...Array(item.countInStock).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  <td>{formatPrice(item.price)}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-        <div className='total-price'>
-          <table>
-            <tbody>
-              <tr>
-                <td>Total Items</td>
-                <td>{cartItems.reduce((a, c) => a + c.qty, 0)} item</td>
-              </tr>
-              <tr>
-                <td>Total Price</td>
-                <td>{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</td>
-              </tr>
-            </tbody>
-          </table>
-          <form className='checkout-btn-container'>
-            <Link to='/shipping'>
-              <button
-                type='button'
-                className='checkout-btn btn'
-                disabled={cartItems.length === 0}
-                onClick={checkoutHandler}
-              >
-                Proceed to Checkout
-              </button>
-            </Link>
-            <Link to='/products'>
-              <button
-                type='button'
-                className='shopping-btn btn'
-                disabled={cartItems.length === 0}
-              >
-                Continue Shopping
-              </button>
-            </Link>
-          </form>
+        <div class='box'>
+          <h3 class='subtotal'>
+            total items :<span>{cartItems.reduce((a, c) => a + c.qty, 0)}</span>
+          </h3>
+          <h3 class='total'>
+            total price:
+            <span>{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</span>
+          </h3>
+
+          <Link to='/signin?redirect=shipping' class='btn'>
+            proceed to checkout
+          </Link>
+          <Link to='/products' class='btn'>
+            continue to shopping
+          </Link>
         </div>
       </div>
     </Wrapper>
@@ -164,138 +126,121 @@ export default function CartPage(props) {
 }
 
 const Wrapper = styled.section`
-  margin: 6rem 0;
+  background: #fff;
+  padding: 8rem 0;
 
-  color: var(--clr-blue);
-  table {
-    width: 100%;
-    border-collapse: collapse;
+  .shopping-cart-container.active {
+    display: block;
+  }
+
+  .shopping-cart-container::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  .shopping-cart-container::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  .shopping-cart-container::-webkit-scrollbar-thumb {
+    background: #130f40;
+    border-radius: 5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    padding: 1rem;
+    color: #130f40;
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .products-container {
+    -webkit-animation: fadeUp 0.4s linear;
+    animation: fadeUp 0.4s linear;
+  }
+
+  .box-container {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (minmax(30rem, 1fr)) [auto-fit];
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .box-container .box {
+    border-radius: 0.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    position: relative;
+    box-shadow: var(--dark-shadow);
+  }
+
+  .box-container .box svg {
+    position: absolute;
+    top: 0.7rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--clr-red);
+  }
+
+  .box-container .box svg:hover {
+    color: #27ae60;
+  }
+
+  .box-container .box img {
+    height: 8rem;
+  }
+
+  .box-container .box .content h3 {
+    font-size: 2rem;
+    color: #130f40;
+  }
+
+  .box-container .box .content span {
+    font-size: 1.5rem;
+    color: #666;
+  }
+
+  .box-container .box .content span.price {
+    color: var(--clr-blue);
     font-size: 1.7rem;
   }
 
-  .remove-btn {
-    font-size: 1rem;
-  }
-  .cart-info {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 2em;
-  }
-
-  th {
-    text-align: left;
-    padding: 1rem;
-    color: var(--clr-white);
-    background: var(--clr-blue);
-    font-size: 1rem;
-    border: none;
+  .box-container .box .content select {
+    width: 8rem;
+    padding: 0.5rem 1.2rem;
+    font-size: 1.5rem;
+    color: #130f40;
+    margin: 0.7rem 0;
   }
 
-  td:nth-child(2) {
-    text-align: left;
-  }
-  td:nth-child(1) {
-    text-align: left;
-  }
-  th:last-child,
-  td:last-child {
-    text-align: right;
-  }
-  p {
-    margin-bottom: 0.6rem;
-  }
-  td {
-    text-align: center;
-    border: none;
-  }
-
-  .alert {
-    text-align: center;
-    font-size: 2rem;
-  }
-
-  select {
-    width: 4rem;
-    padding: 5px;
-    height: 4rem;
-  }
-
-  .checkout-btn-container {
-    display: flex;
-    width: 100%;
-    grid-gap: 2rem;
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-
-  td a {
-    color: var(--clr-blue);
-    font-size: 2rem;
-    &:hover {
-      color: var(--clr-yellow);
-    }
-    transition: var(--transition);
-  }
-
-  td img {
-    width: 5rem;
-  }
-
-  .shopping-btn {
-    padding-left: 3.6rem;
-    padding-right: 3.6rem;
-    margin: 0;
-  }
-
-  .quantity {
-    width: 7rem;
-  }
-  .total-price {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .cart-total {
     margin-top: 2rem;
-  }
-  .total-price td {
-    padding: 1rem 0;
-  }
-
-  .total-price table {
-    border-top: 1px solid var(--clr-yellow);
-    width: 100%;
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    -webkit-animation: fadeUp 0.4s linear 0.4s backwards;
+    animation: fadeUp 0.4s linear 0.4s backwards;
   }
 
-  @media (min-width: 800px) {
-    table {
-      font-size: 2rem;
-    }
-    .checkout-items {
-      margin-left: 1em;
-    }
-    .total-price {
-      align-items: flex-end;
-    }
-    .alert {
-      font-size: 2.7rem;
-    }
-    td img {
-      width: 5rem;
-      height: 5rem;
-    }
-    th {
-      font-size: 1.7rem;
-    }
+  .cart-total .box {
+    padding: 1.5rem;
+  }
 
-    td:nth-child(2) {
-      padding-left: 1.7rem;
-    }
+  .cart-total .box h3 {
+    color: #130f40;
+    font-size: 2rem;
+    padding-bottom: 0.7rem;
+  }
 
-    td:first-child {
-      display: flex;
-    }
-    .checkout-btn,
-    .shopping-btn {
-      font-size: 2rem;
-    }
-  } ;
+  .cart-total .box h3 span {
+    color: #27ae60;
+  }
 `

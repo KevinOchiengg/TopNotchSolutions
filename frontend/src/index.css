@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
 :root {
   --clr-yellow: #ffd741;
@@ -22,7 +22,7 @@
 *,
 ::after,
 ::before {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -153,14 +153,6 @@ button {
   background: none;
 }
 
-.header-top {
-  background: var(--clr-blue);
-}
-.header-bottom {
-  background: #fff;
-  box-shadow: var(--dark-shadow);
-}
-
 .btn:hover,
 .btn:focus {
   background: var(--clr-blue);
@@ -170,7 +162,7 @@ button {
 .heading {
   padding: 1rem 0;
   margin-bottom: 2rem;
-  font-size: 3rem;
+  font-size: 2rem;
   color: var(--clr-blue);
   text-transform: uppercase;
   text-align: center;
@@ -192,13 +184,13 @@ button {
 }
 
 .title span {
-  font-size: 2.5rem;
+  font-size: 1.7rem;
   color: var(--clr-blue);
 }
 
 .title a {
   font-size: 1.5rem;
-  color: #779;
+  color: var(--clr-yellow);
 }
 
 .title a:hover {
@@ -310,15 +302,28 @@ th {
   table {
     width: 50%;
   }
+  .heading {
+    font-size: 3rem;
+  }
+  .title span {
+    font-size: 2.5rem;
+    color: var(--clr-blue);
+  }
 }
 
 @media (min-width: 991px) {
   html {
     font-size: 62.5%;
   }
+  .heading {
+    font-size: 3rem;
+  }
 }
 @media (min-width: 450px) {
   html {
     font-size: 55%;
+  }
+  .heading {
+    font-size: 3rem;
   }
 }

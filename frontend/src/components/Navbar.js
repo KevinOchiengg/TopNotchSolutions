@@ -260,13 +260,15 @@ const Navbar = (props) => {
 }
 
 const Header = styled.header`
+  background: var(--clr-blue);
+  height: 9rem;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  height: 9rem;
   width: 100%;
-  z-index: 9;
-  position: fixed;
+  z-index: 5;
+  border-bottom: 1px solid var(--clr-yellow);
+
   .user-icon {
     display: none;
   }
@@ -336,7 +338,7 @@ const Header = styled.header`
     float: left;
     font-size: 1.7rem;
     font-weight: 500;
-    height: 3rem;
+    height: rem;
     line-height: 3rem;
     width: 3rem;
     position: absolute;
@@ -368,7 +370,7 @@ const Header = styled.header`
   .cart,
   .menu-bars,
   .user-icon {
-    font-size: 2.7rem;
+    font-size: 2.4rem;
     color: var(--clr-white);
   }
 
@@ -500,17 +502,22 @@ const Header = styled.header`
       margin: 32px 0px 20px 0;
     }
   }
+  @media (min-width: 767px) {
+    .heart,
+    .cart,
+    .menu-bars,
+    .user-icon {
+      font-size: 2.7rem;
+      color: var(--clr-white);
+    }
+  }
   .right-blok-box a {
     font-size: 20px;
     display: inline-block;
     position: relative;
     padding-right: 15px;
   }
-  .right-blok-box a .cart-total-amunt {
-    font-size: 14px;
-    font-weight: 500;
-    padding-left: 6px;
-  }
+
   @media only screen and (max-width: 479px) {
     .right-blok-box a .cart-total-amunt {
       display: none;
@@ -574,6 +581,7 @@ const Navigation = styled.nav`
   color: var(--clr-blue);
   height: 6rem;
   background: var(--clr-white);
+  box-shadow: var(--dark-shadow);
   z-index: 5;
   @media screen and (min-width: 768px) {
     display: block;

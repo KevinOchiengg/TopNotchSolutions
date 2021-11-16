@@ -23,11 +23,11 @@ const Hero = () => {
             <SwiperSlide key={id} className='wrapper'>
               <div className='swiper-slide slide'>
                 <div className='content'>
-                  <span>our special offer</span>
+                  <span>special offers</span>
                   <h3>{title}</h3>
                   <p>{text}</p>
                   <Link to='/products' className='btn'>
-                    order now
+                    shop now
                   </Link>
                 </div>
                 <div className='image'>
@@ -46,38 +46,43 @@ const Hero = () => {
 export default Hero
 
 const Wrapper = styled.section`
+  position: relative;
+  top: 9rem;
   .home-slider .slide {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    padding: 4rem 0;
     gap: 2rem;
+    position: relative;
   }
 
-  .home-slider .slide .content {
+  .content {
+    flex: 1 1 45rem;
+    text-align: center;
+  }
+
+  .image {
     flex: 1 1 45rem;
   }
 
-  .home-slider .slide .image {
-    flex: 1 1 45rem;
-  }
-
-  .home-slider .slide .image img {
+  .image img {
     width: 100%;
   }
 
-  .home-slider .slide .content span {
+  .content span {
     color: var(--clr-yellow);
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
-  .home-slider .slide .content h3 {
+  .content h3 {
     color: var(--clr-blue);
-    font-size: 7rem;
+    font-size: 3rem;
   }
 
-  .home-slider .slide .content p {
+  .content p {
     color: var(--clr-dark-grey);
-    font-size: 2.2rem;
+    font-size: 1.7rem;
     padding: 0.5rem 0;
     line-height: 1.5;
   }
@@ -86,18 +91,24 @@ const Wrapper = styled.section`
     background: var(--green);
   }
 
-  @media (max-width: 991px) {
-    .home-slider .slide .content h3 {
-      font-size: 5rem;
+  @media (min-width: 450px) {
+    top: 0rem;
+    .content span {
+      font-size: 2.5rem;
     }
-    padding-top: 15rem;
-  }
+    .content {
+      flex: 1 1 45rem;
+      text-align: start;
+    }
+    .content h3 {
+      font-size: 9rem;
+    }
+    .home-slider .slide {
+      top: 0rem;
+    }
 
-  @media (max-width: 450px) {
-    .home-slider .slide .content h3 {
-      color: var(--black);
-      font-size: 5rem;
+    .content p {
+      font-size: 2.2rem;
     }
-    padding-top: 15rem;
   }
 `
