@@ -19,7 +19,7 @@ const slides = [
   },
   {
     id: 4,
-    title: 'Lenovo - Intel Celeron',
+    title: 'Lenovo Intel Celeron',
     image: 'images/lenovo401.jpg',
     text: 'Built to last. Engineered for long-lasting performance, the Lenovo Laptop delivers, powerful, smooth processing in a stylish, light design.',
   },

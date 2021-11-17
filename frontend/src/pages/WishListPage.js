@@ -30,8 +30,9 @@ const WishListPage = (props) => {
     return (
       <Wrapper>
         <div className='row section-center'>
-          <h3 className='sub-heading'>wishlist</h3>
-          <h1 className='heading'>your wishlist</h1>
+          <h3 className='heading'>
+            your<span>wishlist</span>
+          </h3>
           <Message
             message='Oops! your wish list is empty'
             buttonText='Go shopping'
@@ -46,8 +47,10 @@ const WishListPage = (props) => {
     return (
       <Wrapper>
         <div className='row section-center'>
-          <h3 className='sub-heading'>wishlist</h3>
-          <h1 className='heading'>your wishlist</h1>
+          <h3 className='heading'>
+            your<span>wishlist</span>
+          </h3>
+
           <Message
             message='Error Loading Your wish List'
             name='hide'
@@ -61,8 +64,9 @@ const WishListPage = (props) => {
   return (
     <Wrapper>
       <div className='row section-center'>
-        <h3 className='sub-heading'>wishlist</h3>
-        <h1 className='heading'>your wishlist</h1>
+        <h3 className='heading'>
+          your<span>wishlist</span>
+        </h3>
         <div className='table-container'>
           <table className='table'>
             <thead>

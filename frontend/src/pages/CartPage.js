@@ -106,16 +106,17 @@ export default function CartPage(props) {
 
         <div class='box'>
           <h3 class='subtotal'>
-            total items :<span>{cartItems.reduce((a, c) => a + c.qty, 0)}</span>
+            total items: <span>{cartItems.reduce((a, c) => a + c.qty, 0)}</span>
           </h3>
           <h3 class='total'>
-            total price:
+            total price:{' '}
             <span>{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</span>
           </h3>
 
           <Link to='/signin?redirect=shipping' class='btn'>
             proceed to checkout
           </Link>
+          <br />
           <Link to='/products' class='btn'>
             continue to shopping
           </Link>
@@ -126,25 +127,9 @@ export default function CartPage(props) {
 }
 
 const Wrapper = styled.section`
-  background: #fff;
+  position: relative;
+  top: 9rem;
   padding: 8rem 0;
-
-  .shopping-cart-container.active {
-    display: block;
-  }
-
-  .shopping-cart-container::-webkit-scrollbar {
-    width: 1rem;
-  }
-
-  .shopping-cart-container::-webkit-scrollbar-track {
-    background: #fff;
-  }
-
-  .shopping-cart-container::-webkit-scrollbar-thumb {
-    background: #130f40;
-    border-radius: 5rem;
-  }
 
   .title {
     font-size: 2.5rem;
@@ -182,30 +167,30 @@ const Wrapper = styled.section`
     box-shadow: var(--dark-shadow);
   }
 
-  .box-container .box svg {
+  .box svg {
     position: absolute;
     top: 0.7rem;
     right: 1rem;
     font-size: 2rem;
     cursor: pointer;
+    color: var(--clr-blue);
+  }
+
+  .box svg:hover {
     color: var(--clr-red);
   }
 
-  .box-container .box svg:hover {
-    color: #27ae60;
-  }
-
-  .box-container .box img {
+  .box img {
     height: 8rem;
   }
 
-  .box-container .box .content h3 {
+  .content h3 {
     font-size: 2rem;
-    color: #130f40;
+    color: var(--clr-blue);
   }
 
   .box-container .box .content span {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #666;
   }
 
@@ -235,12 +220,20 @@ const Wrapper = styled.section`
   }
 
   .cart-total .box h3 {
-    color: #130f40;
+    color: var(--clr-dark-grey);
     font-size: 2rem;
     padding-bottom: 0.7rem;
   }
 
   .cart-total .box h3 span {
-    color: #27ae60;
+    color: var(--clr-blue);
+  }
+
+  .title {
+    color: var(--clr-blue);
+  }
+
+  @media (min-width: 800px) {
+    top: 0;
   }
 `

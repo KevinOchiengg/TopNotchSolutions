@@ -555,7 +555,6 @@ const Header = styled.header`
   .cart-btns a:hover,
   .signout:hover {
     background: var(--clr-yellow);
-
     color: #ffffff;
   }
   .align-items-center {
@@ -616,6 +615,7 @@ const Navigation = styled.nav`
     display: block;
     font-size: 13px;
     font-weight: 700;
+    color: var(--clr-blue);
     padding: 0;
     text-transform: uppercase;
     position: relative;

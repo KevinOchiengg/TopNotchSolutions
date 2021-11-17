@@ -82,7 +82,7 @@ const Wrapper = styled.section`
 
   .content p {
     color: var(--clr-dark-grey);
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     padding: 0.5rem 0;
     line-height: 1.5;
   }
@@ -92,9 +92,25 @@ const Wrapper = styled.section`
   }
 
   @media (min-width: 450px) {
-    top: 0rem;
     .content span {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
+    }
+    .content {
+      flex: 1 1 45rem;
+      text-align: start;
+    }
+    .content h3 {
+      font-size: 8rem;
+    }
+
+    .content p {
+      font-size: 1.7rem;
+    }
+  }
+  @media (min-width: 800px) {
+    top: 0;
+    .content span {
+      font-size: 2.7rem;
     }
     .content {
       flex: 1 1 45rem;
@@ -108,7 +124,7 @@ const Wrapper = styled.section`
     }
 
     .content p {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
   }
 `

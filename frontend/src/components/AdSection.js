@@ -7,7 +7,9 @@ const AdSection = () => {
     <Wrapper>
       <div className='section-center'>
         <Link
-          to='https://www.bluehost.com/track/kevin932/'
+          to={{
+            pathname: 'https://www.bluehost.com/track/kevin932/',
+          }}
           target='_blank'
           rel='noopener noreferrer'
         >
