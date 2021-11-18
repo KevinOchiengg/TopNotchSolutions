@@ -148,33 +148,34 @@ const Navbar = (props) => {
               </ul>
             </div>
 
-            <div className='shopping-cart-wrap'>
-              <FaUser className='user-icon' />
+            {userInfo ? (
+              <div className='shopping-cart-wrap'>
+                <FaUser className='user-icon' />
 
-              <ul className='mini-cart'>
-                <li className='cart-item'>
-                  <Link to='/profile'>Profile</Link>
-                </li>
-                <li className='cart-item'>
-                  <Link to='/orderhistory'>Orders</Link>
-                </li>
+                <ul className='mini-cart'>
+                  <li className='cart-item'>
+                    <Link to='/profile'>Profile</Link>
+                  </li>
+                  <li className='cart-item'>
+                    <Link to='/orderhistory'>Orders</Link>
+                  </li>
 
-                <li className='mini-cart-btns'>
-                  <div className='cart-btns'>
-                    {userInfo ? (
-                      <span className='signout' onClick={signoutHandler}>
-                        Sign out
-                      </span>
-                    ) : (
-                      <Link to='/signin'>Sign in</Link>
-                    )}
+                  <li className='mini-cart-btns'>
+                    <div className='cart-btns'>
+                      {userInfo ? (
+                        <span className='signout' onClick={signoutHandler}>
+                          Sign out
+                        </span>
+                      ) : (
+                        <Link to='/signin'>Sign in</Link>
+                      )}
 
-                    {userInfo ? null : <Link to='/register'>Sign up</Link>}
-                  </div>
-                </li>
-              </ul>
-            </div>
-            {userInfo ? null : (
+                      {userInfo ? null : <Link to='/register'>Sign up</Link>}
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            ) : (
               <div className='register-btn-container'>
                 <Link to='/signin'>Sign in</Link>
                 <Link to='/register'>Sign up</Link>
@@ -264,12 +265,6 @@ const Header = styled.header`
   .register-btn-container {
     display: none;
   }
-  .register-btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 4rem;
-  }
 
   .register-btn-container a {
     background: var(--clr-yellow);
@@ -295,6 +290,12 @@ const Header = styled.header`
     }
     .user-icon {
       display: block;
+    }
+    .register-btn-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 4rem;
     }
   }
 
@@ -550,7 +551,6 @@ const Header = styled.header`
     }
   }
   .right-blok-box a {
-    font-size: 20px;
     display: inline-block;
     position: relative;
     padding-right: 15px;

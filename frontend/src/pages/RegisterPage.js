@@ -147,12 +147,16 @@ const RegisterPage = ({ location, history }) => {
 }
 
 const Wrapper = styled.section`
-  margin: 12rem 0;
+  margin-top: 9rem;
+  padding: 5rem 0;
   color: var(--clr-light-grey);
   .btn {
     width: 50%;
+    font-size: 1.7rem;
   }
-
+  @media screen and (min-width: 800px) {
+    margin-top: 0rem;
+  }
   .form-content {
     text-align: center;
     margin: 3rem auto 0 auto;
@@ -176,7 +180,7 @@ const Wrapper = styled.section`
     border-bottom: 1px solid var(--clr-light-grey);
     width: 90%;
     margin: 2rem auto;
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
 
   svg {
@@ -188,8 +192,8 @@ const Wrapper = styled.section`
   input[type='text'] {
     border-radius: none;
     border: none;
-    color: var(--clr-blue);
-    font-size: 2rem;
+    color: var(--clr-dark-grey);
+    font-size: 1.7rem;
     padding: 6px;
     width: 100%;
   }
@@ -202,7 +206,7 @@ const Wrapper = styled.section`
     justify-content: center;
   }
   .alternate-logins-cotainer svg {
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: var(--clr-blue);
     margin: 0 1rem;
   }
@@ -212,7 +216,7 @@ const Wrapper = styled.section`
 
   .forgot-password a {
     color: var(--clr-blue);
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
 
   .strike {
@@ -227,7 +231,7 @@ const Wrapper = styled.section`
   .strike > span {
     position: relative;
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 
   .header h4 {
@@ -236,7 +240,7 @@ const Wrapper = styled.section`
   }
 
   .header {
-    font-size: 2.8rem;
+    font-size: 2rem;
   }
 
   .header svg,
@@ -269,16 +273,16 @@ const Wrapper = styled.section`
 
   .sign-in-using h6 {
     margin: 0 auto;
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
   .register-text-container {
     text-align: center;
   }
   .register-text-container p {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
   .register-text-container h6 {
-    font-size: 2rem;
+    font-size: 1.7rem;
     text-decoration: underline;
     color: var(--clr-blue);
   }

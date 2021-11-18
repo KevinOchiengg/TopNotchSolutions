@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 console.log('sv' + '' + process.env.MONGODB_URL)
 
 mongoose.connect(
-  process.env.MONGODB_URL || 'mongodb://localhost/topnotchsolution',
+  'mongodb+srv://Kevin:cliveotieno9019$@cluster0.fxjmt.mongodb.net/topnotchsolutions?retryWrites=true&w=majority',
 
   {
     useNewUrlParser: true,
@@ -46,6 +46,9 @@ app.use(express.static(path.join(__dirname, '/frontend/build')))
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 )
+// app.get('/', (req, res) => {
+//   res.send('Server is ready');
+// });
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message })
@@ -128,3 +131,7 @@ io.on('connection', (socket) => {
 httpServer.listen(port, () => {
   console.log(`Serve at http://localhost:${port}`)
 })
+
+// app.listen(port, () => {
+//   console.log(`Serve at http://localhost:${port}`);
+// });

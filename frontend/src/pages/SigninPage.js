@@ -81,37 +81,31 @@ const SigninPage = () => {
 export default SigninPage
 
 const Wrapper = styled.section`
-  height: 100vh;
-  background: #fff;
   display: flex;
-  align-items: center;
   justify-content: center;
-
+  margin-top: 9rem;
+  padding: 9rem 0;
   form {
-    max-width: 90%;
-    padding: 1.7rem;
-    border: 0.1rem solid #244d4d;
+    padding: 3rem;
+    box-shadow: var(--light-shadow);
   }
 
   @media screen and (min-width: 800px) {
-    form {
-      max-width: 35%;
-    }
+    margin-top: 0rem;
   }
 
   form h3 {
     font-size: 2.2rem;
     padding-bottom: 1rem;
-    color: #244d4d;
+    color: var(--clr-blue);
   }
 
   form .box {
     width: 100%;
     text-transform: none;
-    font-size: 1.5rem;
-    color: #244d4d;
+    color: var(--clr-dark-grey);
     padding: 1rem 1.2rem;
-    border: 0.1rem solid #244d4d;
+    border: 0.1rem solid var(--clr-light-grey);
     margin: 0.7rem 0;
   }
 
@@ -128,11 +122,15 @@ const Wrapper = styled.section`
     height: 1.7rem;
     width: 1.7rem;
   }
+  input {
+    font-size: 1.7rem;
+    border: 1px solid var(--clr-light-grey);
+  }
   form .remember label {
     padding: 1rem 0;
     cursor: pointer;
-    font-size: 1.7rem;
     color: #779;
+    font-size: 1.7rem;
   }
 
   form .btn {
@@ -143,8 +141,8 @@ const Wrapper = styled.section`
 
   form p {
     padding-top: 1rem;
-    font-size: 1.7rem;
     color: #779;
+    font-size: 1.7rem;
   }
 
   form p a {
