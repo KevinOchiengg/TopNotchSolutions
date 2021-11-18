@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 console.log('sv' + '' + process.env.MONGODB_URL)
 
 mongoose.connect(
-  process.env.MONGODB_URL || 'mongodb://localhost/topnotchsolution',
+  'mongodb+srv://Kevin:cliveotieno9019$@cluster0.fxjmt.mongodb.net/topnotchsolutions?retryWrites=true&w=majority',
 
   {
     useNewUrlParser: true,
