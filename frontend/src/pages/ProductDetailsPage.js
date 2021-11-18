@@ -285,6 +285,7 @@ const Wrapper = styled.section`
     flex-wrap: wrap;
     align-items: center;
     gap: 3rem;
+    font-size: 1.7rem;
   }
 
   .product-detail-row {
@@ -293,6 +294,7 @@ const Wrapper = styled.section`
 
   .description-row p {
     text-align: center;
+    font-size: 1.7rem;
   }
 
   .comment-form-area select {
@@ -326,10 +328,13 @@ const Wrapper = styled.section`
   .row .content {
     flex: 1 1 45rem;
   }
+  .row .content p {
+    font-size: 1.7rem;
+  }
 
   .row .content h3 {
     color: var(--clr-blue);
-    font-size: 3rem;
+    font-size: 2rem;
     padding: 0.5rem 0;
   }
 
@@ -343,7 +348,7 @@ const Wrapper = styled.section`
   }
   p {
     color: var(--clr-dark-grey);
-    font-size: 2rem;
+    font-size: 1.7rem;
     padding: 0.5rem 0;
     line-height: 2;
   }
@@ -352,7 +357,7 @@ const Wrapper = styled.section`
     font-size: 5rem;
   }
   .content .price {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     color: var(--clr-blue);
     font-weight: 500;
     margin-top: 1.7rem;
@@ -455,7 +460,7 @@ const Wrapper = styled.section`
 
   .review .slide .user h3 {
     color: var(--clr-blue);
-    font-size: 2rem;
+    font-size: 1.7rem;
     padding-bottom: 0.5rem;
   }
 
@@ -510,7 +515,7 @@ const Wrapper = styled.section`
       flex-direction: row;
     }
     .review .slide p {
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
     .review .slide .user h3 {
       font-size: 2.2rem;
@@ -518,6 +523,12 @@ const Wrapper = styled.section`
     .rating,
     svg {
       font-size: 2rem;
+    }
+    .content .price {
+      font-size: 2rem;
+    }
+    .row .content h3 {
+      font-size: 2.2rem;
     }
   }
 `

@@ -67,10 +67,6 @@ const Wrapper = styled.article`
     margin-bottom: 8rem;
   }
 
-  .heading {
-    margin-bottom: 6rem;
-  }
-
   .img-container {
     position: relative;
     width: 150px;
@@ -101,6 +97,9 @@ const Wrapper = styled.article`
     background: var(--clr-yellow);
     color: var(--clr-white);
   }
+  .heading {
+    margin: 0rem 0rem 4rem;
+  }
   .img-container::before {
     content: '';
     width: 100%;
@@ -124,7 +123,7 @@ const Wrapper = styled.article`
   }
   .info {
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: var(--clr-blue);
     line-height: 3rem;
   }
@@ -156,5 +155,11 @@ const Wrapper = styled.article`
   .random-btn:hover {
     background: var(--clr-blue);
     color: var(--clr-blue);
+  }
+
+  @media (min-width: 800px) {
+    .info {
+      font-size: 2rem;
+    }
   }
 `

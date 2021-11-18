@@ -61,15 +61,6 @@ const Contact = () => {
           loading='lazy'
         ></iframe>
       </div>
-
-      <section class='newsletter'>
-        <h3>subscribe us for latest updates</h3>
-
-        <form action=''>
-          <input class='box' type='email' placeholder='enter your email' />
-          <input type='submit' value='subscribe' class='btn' />
-        </form>
-      </section>
     </Wrapper>
   )
 }
@@ -118,6 +109,10 @@ const Wrapper = styled.section`
     flex-wrap: wrap;
     gap: 1.5rem;
     margin-top: 2rem;
+  }
+
+  .heading {
+    margin: 0rem 0rem 4rem;
   }
 
   form {
@@ -179,28 +174,6 @@ const Wrapper = styled.section`
     border-radius: 0.5rem;
     -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  }
-  .newsletter {
-    background: url(../images/newsletter-bg.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
-    text-align: center;
-    padding: 5 rem 2 rem;
-  }
-  .newsletter form {
-    max-width: 55 rem;
-    display: flex;
-    align-items: center;
-    margin: 1 rem auto;
-    padding: 1.5 rem;
-    background: rgba(0, 0, 0, 0.1);
-  }
-  .newsletter form .box {
-    width: 100%;
-    padding: 0.7 rem 1.5 rem;
-    font-size: 1.7rem;
-    color: #333;
-    text-transform: none;
   }
 `
 

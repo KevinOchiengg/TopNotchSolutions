@@ -575,7 +575,7 @@ const Header = styled.header`
 const Navigation = styled.nav`
   position: sticky;
   top: 0;
-  display: none;
+
   width: 100%;
   color: var(--clr-blue);
   height: 6rem;

@@ -45,6 +45,12 @@ const Wrapper = styled.article`
   a:hover img {
     transform: scale(1.02);
   }
+
+  @media (min-width: 800px) {
+    img {
+      height: 18rem;
+    }
+  }
 `
 
 export default BannerSection

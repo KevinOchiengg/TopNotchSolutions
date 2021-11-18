@@ -73,21 +73,21 @@ const Wrapper = styled.article`
   }
 
   .heart {
-    right: -15rem;
+    right: 1.5rem;
   }
 
   .eye {
-    left: -15rem;
+    left: 1.5rem;
   }
 
   img {
-    height: 17rem;
+    height: 15rem;
     margin: 1rem auto;
   }
 
   h3 {
     color: var(--clr-blue);
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
 
   .rating {
@@ -99,6 +99,16 @@ const Wrapper = styled.article`
     color: var(--clr-blue);
     font-weight: bolder;
     margin-right: 1rem;
-    font-size: 2rem;
+    font-size: 1.7rem;
+  }
+
+  @media (min-width: 800px) {
+    .heart {
+      right: -15rem;
+    }
+
+    .eye {
+      left: -15rem;
+    }
   }
 `
