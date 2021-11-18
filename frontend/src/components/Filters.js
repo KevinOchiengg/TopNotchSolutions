@@ -148,7 +148,10 @@ const Wrapper = styled.section`
   .product-tags-container {
     margin-top: 2.5rem;
   }
-
+  h4 {
+    font-size: 1.7rem;
+    color: var(--clr-blue);
+  }
   .sidebar-tag li {
     padding: 5px;
     border: 1px solid var(--clr-light-grey);

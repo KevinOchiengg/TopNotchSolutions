@@ -94,7 +94,7 @@ const GridView = () => {
 
 const Wrapper = styled.section`
   .product-content-list h4 a {
-    font-size: 2.2rem;
+    font-size: 1.7rem;
     color: var(--clr-blue);
   }
 
@@ -106,8 +106,15 @@ const Wrapper = styled.section`
     padding: 1rem;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   }
-
+  p {
+    color: var(--clr-light-grey);
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+  }
   .product-content-list {
+    margin: 1rem 0;
+  }
+  .rating {
     margin: 1rem 0;
   }
 
@@ -150,7 +157,7 @@ const Wrapper = styled.section`
     margin-right: 1rem;
   }
   .price-box {
-    font-size: 2rem;
+    font-size: 1.7rem;
     margin-bottom: 1rem;
   }
 

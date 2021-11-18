@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FaAlignRight } from 'react-icons/fa'
-
 import { AiOutlineHeart } from 'react-icons/ai'
 import {
   FaSearch,
@@ -26,13 +24,25 @@ const Navbar = (props) => {
   const [name, setName] = useState('')
   const { openSidebar, openSubmenu, closeSubmenu } = useGlobalContext()
   const [navbar, setNavbar] = useState(false)
+  const userSignin = useSelector((state) => state.userSignin)
+  const { userInfo } = userSignin
+  const dispatch = useDispatch()
+  const signoutHandler = () => {
+    dispatch(signout())
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    props.history.push(`/search/name/${name}`)
+  }
   const productId = props.match.params.id
   const qty = props.location.search
     ? Number(props.location.search.split('=')[1])
     : 1
+
   const cart = useSelector((state) => state.cart)
   const { cartItems, error } = cart
-  const dispatch = useDispatch()
+
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty))
@@ -44,29 +54,16 @@ const Navbar = (props) => {
     dispatch(removeFromCart(id))
   }
 
-  const checkoutHandler = () => {
-    props.history.push('/signin?redirect=shipping')
-  }
+  // const checkoutHandler = () => {
+  //   props.history.push('/signin?redirect=shipping')
+  // }
 
-  const productCategoryList = useSelector((state) => state.productCategoryList)
-  const { categories } = productCategoryList
-  const userSignin = useSelector((state) => state.userSignin)
-  const { userInfo } = userSignin
   const wishList = useSelector((state) => state.wishList)
   const { wishListItems } = wishList
-
-  const signoutHandler = () => {
-    dispatch(signout())
-  }
 
   useEffect(() => {
     dispatch(listProductCategories())
   }, [dispatch])
-
-  const submitHandler = (e) => {
-    e.preventDefault()
-    props.history.push(`/search/name/${name}`)
-  }
 
   return (
     <>
@@ -177,6 +174,12 @@ const Navbar = (props) => {
                 </li>
               </ul>
             </div>
+            {userInfo ? null : (
+              <div className='register-btn-container'>
+                <Link to='/signin'>Sign in</Link>
+                <Link to='/register'>Sign up</Link>
+              </div>
+            )}
 
             <FaBars className='menu-bars' onClick={openSidebar} />
           </div>
@@ -196,17 +199,6 @@ const Navbar = (props) => {
                 </li>
                 <li>
                   <Link to='/about'>About Us</Link>
-                </li>
-                <li>
-                  <Link to=''>
-                    Category <FaAngleDown />
-                  </Link>
-
-                  <ul className='sub-menu'>
-                    <li>
-                      <Link to={`/`}>hoood</Link>
-                    </li>
-                  </ul>
                 </li>
 
                 {userInfo && userInfo.isAdmin && (
@@ -265,12 +257,62 @@ const Header = styled.header`
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   z-index: 5;
   border-bottom: 1px solid var(--clr-yellow);
-
-  .user-icon {
+  .register-btn-container {
     display: none;
+  }
+  .register-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4rem;
+  }
+
+  .register-btn-container a {
+    background: var(--clr-yellow);
+    border-radius: 4px;
+    color: var(--clr-blue);
+    font-size: 1.7rem;
+    font-weight: 500;
+    height: 4rem;
+    line-height: 4rem;
+    padding: 0 15px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    position: relative;
+    .menu-bars {
+      display: none;
+    }
+    .user-icon {
+      display: block;
+    }
+  }
+
+  .align-items-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .nav-logo {
+    width: 8rem;
+  }
+
+  .right-blok-box {
+    display: flex;
+  }
+  .user-icon {
+    display: block;
   }
 
   form {
@@ -279,14 +321,7 @@ const Header = styled.header`
     background: transparent;
     border: 2px solid transparent;
     position: relative;
-    display: none;
     width: 35%;
-  }
-
-  @media screen and (min-width: 768px) {
-    form {
-      display: block;
-    }
   }
 
   input {
@@ -314,16 +349,6 @@ const Header = styled.header`
     border: none;
     transform: translateY(-50%);
   }
-  @media screen and (min-width: 768px) {
-    display: block;
-    position: relative;
-    .menu-bars {
-      display: none;
-    }
-    .user-icon {
-      display: block;
-    }
-  }
 
   .right-blok-box {
     justify-content: flex-end;
@@ -335,10 +360,9 @@ const Header = styled.header`
     background: var(--clr-yellow);
     border-radius: 100%;
     color: var(--clr-blue);
-    float: left;
     font-size: 1.7rem;
     font-weight: 500;
-    height: rem;
+    height: 3rem;
     line-height: 3rem;
     width: 3rem;
     position: absolute;
@@ -478,6 +502,17 @@ const Header = styled.header`
     margin: 0;
   }
   @media only screen and (max-width: 767px) {
+    .cart-total {
+      height: 2.5rem;
+      line-height: 2.5rem;
+      width: 2.5rem;
+      top: -1.6rem;
+      right: 2px;
+    }
+
+    .user-icon {
+      display: none;
+    }
     .shopping-cart-wrap ul.mini-cart {
       right: -50px;
       width: 280px;
@@ -500,6 +535,9 @@ const Header = styled.header`
   @media only screen and (max-width: 767px) {
     .right-blok-box {
       margin: 32px 0px 20px 0;
+    }
+    form {
+      display: none;
     }
   }
   @media (min-width: 767px) {
@@ -540,7 +578,7 @@ const Header = styled.header`
     background: #eef0f1;
     border: 1px solid #e1e1e1;
     border-radius: 5px;
-    color: #333;
+    color: var(--clr-blue);
     display: block;
     font-size: 12px;
     font-weight: 500;
@@ -557,19 +595,6 @@ const Header = styled.header`
     background: var(--clr-yellow);
     color: #ffffff;
   }
-  .align-items-center {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-  }
-  .nav-logo {
-    width: 8rem;
-  }
-
-  .right-blok-box {
-    display: flex;
-  }
 `
 
 const Navigation = styled.nav`
@@ -581,7 +606,7 @@ const Navigation = styled.nav`
   height: 6rem;
   background: var(--clr-white);
   box-shadow: var(--dark-shadow);
-  z-index: 5;
+  z-index: 4;
   @media screen and (min-width: 768px) {
     display: block;
     .menu-bars {

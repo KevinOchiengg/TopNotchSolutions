@@ -91,8 +91,10 @@ export default function ProductEditPage(props) {
     <Wrapper>
       <div className='section-center'>
         <form className='form' onSubmit={submitHandler}>
-          <h3 className='sub-heading'>product</h3>
-          <h1 className='heading'>edit product</h1>
+          <h3 className='heading'>
+            edit<span>product</span>
+          </h3>
+
           {loadingUpdate && <Loading />}
           {errorUpdate && (
             <Message variant='danger' message='error occured' name='hide' />

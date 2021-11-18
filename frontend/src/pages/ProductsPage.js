@@ -128,12 +128,13 @@ const ProductsPage = (props) => {
 export default ProductsPage
 
 const Wrapper = styled.section`
-  margin: 6rem 0;
-  font-size: 2rem;
+  margin-top: 9rem;
+  padding: 4rem 0;
   color: var(--clr-dark-grey);
 
   a {
     color: var(--clr-dark-grey);
+    font-size: 1.7rem;
   }
 
   .has-sub {
@@ -164,8 +165,9 @@ const Wrapper = styled.section`
   .products-list-header {
     display: flex;
     justify-content: space-between;
-    height: 3em;
+    height: 5rem;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    margin-top: 4rem;
   }
   .nav,
   .product-relevance {
@@ -186,7 +188,7 @@ const Wrapper = styled.section`
   }
 
   select {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--clr-dark-grey);
   }
 
@@ -195,11 +197,16 @@ const Wrapper = styled.section`
   }
 
   @media only screen and (min-width: 475px) {
+    margin-top: 0rem;
     .btn:first-child {
       margin-bottom: 5px;
     }
   }
   @media (min-width: 769px) {
+    margin-top: 0rem;
+    .products-list-header {
+      margin-top: 0;
+    }
     .products-category-container {
       display: flex;
 

@@ -10,7 +10,7 @@ export default function Product({ product }) {
   const [qty] = useState(1)
 
   return (
-    <Wrapper>
+    <Wrapper className='product'>
       <Link to={`/wishlist/${product._id}`} className='heart'>
         <AiOutlineHeart />
       </Link>
@@ -75,7 +75,15 @@ const Wrapper = styled.article`
   .heart {
     right: 1.5rem;
   }
-
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  .content a {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .eye {
     left: 1.5rem;
   }

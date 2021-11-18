@@ -6,17 +6,17 @@ const BrandSection = () => {
     <Wrapper>
       <div className='row section-center'>
         <div className='brand-single-item'>
-          <img src='images/brands/dior.png' alt='dior' />
+          <img src='images/brands/lenovo.png' alt='dior' />
         </div>
         <div className='brand-single-item'>
-          <img src='images/brands/lui.png' alt='lui' />
+          <img src='images/brands/sony.png' alt='lui' />
         </div>
         <div className='brand-single-item'>
-          <img src='images/brands/gucci.png' alt='gucci' />
+          <img src='images/brands/sumsung.png' alt='gucci' />
         </div>
 
         <div className='brand-single-item'>
-          <img src='images/brands/nike.png' alt='nike' />
+          <img src='images/brands/asus.png' alt='nike' />
         </div>
       </div>
     </Wrapper>
@@ -36,12 +36,12 @@ const Wrapper = styled.section`
 
   img {
     filter: grayscale(100%);
-    width: 8rem;
+    width: 10rem;
   }
 
   @media only screen and (min-width: 800px) {
     img {
-      width: 12rem;
+      width: 15rem;
     }
 
     .row {

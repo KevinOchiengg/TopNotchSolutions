@@ -47,6 +47,7 @@ const Wrapper = styled.section`
   .featured {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    align-items: center;
     gap: 1.5rem;
   }
 

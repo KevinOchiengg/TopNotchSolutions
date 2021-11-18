@@ -80,6 +80,7 @@ const Wrapper = styled.footer`
   background: var(--clr-blue);
   color: var(--clr-white);
   padding-top: 2rem;
+  border-top: 1px solid var(--clr-yellow);
 
   .box-container {
     display: flex;

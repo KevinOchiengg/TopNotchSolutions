@@ -128,7 +128,9 @@ const WishListPage = (props) => {
 }
 
 const Wrapper = styled.section`
-  margin: 12rem auto;
+  margin-top: 9rem;
+  height: 100vh;
+
   .table-container {
     overflow-x: auto;
   }
@@ -146,6 +148,12 @@ const Wrapper = styled.section`
   a,
   svg {
     color: var(--clr-blue);
+  }
+  @media only screen and (min-width: 475px) {
+    margin-top: 0rem;
+  }
+  @media (min-width: 769px) {
+    margin-top: 0rem;
   }
 `
 

@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
-import { CgProfile } from 'react-icons/cg'
-import { TiShoppingCart } from 'react-icons/ti'
-import { MdDashboard } from 'react-icons/md'
-import { BiSupport } from 'react-icons/bi'
 import { useGlobalContext } from '../context'
 import { Link } from 'react-router-dom'
-import { FaBook } from 'react-icons/fa'
 import { listProductCategories } from '../actions/productActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { signout } from '../actions/userActions'
@@ -61,74 +56,100 @@ const Sidebar = (props) => {
             placeholder='Search product...'
             onChange={(e) => setName(e.target.value)}
           />
-          <button className='search-btn'>
+          <button className='search-btn' onClick={submitHandler}>
             <FaSearch />
           </button>
         </form>
 
         <ul className='mobile-menu'>
           <li className='menu-item'>
-            <Link to='/'>Home</Link>
+            <Link to='/' onClick={closeSidebar}>
+              Home
+            </Link>
           </li>
           <li className='menu-item'>
-            <Link to='/about'>About us</Link>
+            <Link to='/about' onClick={closeSidebar}>
+              About us
+            </Link>
           </li>
           <li className='menu-item'>
-            <Link to='/products'>Products</Link>
+            <Link to='/products' onClick={closeSidebar}>
+              Products
+            </Link>
           </li>
-          <li className='menu-item'>
-            <div className='container'>
-              <span className='menu-btn'> Admin</span>
-              <button
-                className='dropdown-btn'
-                onClick={() => setShowInfo(!isDropDownItemsOpen)}
-              >
-                {isDropDownItemsOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
-              </button>
-            </div>
+          {userInfo && userInfo.isAdmin && (
+            <li className='menu-item'>
+              <div className='container'>
+                <span className='menu-btn'> Admin</span>
+                <button
+                  className='dropdown-btn'
+                  onClick={() => setShowInfo(!isDropDownItemsOpen)}
+                >
+                  {isDropDownItemsOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
+                </button>
+              </div>
 
-            {isDropDownItemsOpen && (
-              <ul>
-                <li>
-                  <Link to='/dashboard'> Dashboard</Link>
-                </li>
-                <li>
-                  <Link to='/productlist'>Products</Link>
-                </li>
-                <li>
-                  <Link to='/orderlist'>Orders</Link>
-                </li>
-                <li>
-                  <Link to='/userlist'>Users</Link>
-                </li>
-                <li>
-                  <Link to='/support'>Support</Link>
-                </li>
-              </ul>
-            )}
-          </li>
-          <li className='menu-item'>
-            <div className='container'>
-              <span className='menu-btn'>Seller</span>
-              <button
-                className='dropdown-btn'
-                onClick={() => setShowInfo(!isDropDownItemsOpen)}
-              >
-                {isDropDownItemsOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
-              </button>
-            </div>
+              {isDropDownItemsOpen && (
+                <ul>
+                  <li>
+                    <Link to='/dashboard' onClick={closeSidebar}>
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/productlist' onClick={closeSidebar}>
+                      Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/orderlist' onClick={closeSidebar}>
+                      Orders
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/userlist' onClick={closeSidebar}>
+                      Users
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/support' onClick={closeSidebar}>
+                      Support
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+          )}
 
-            {isDropDownItemsOpen && (
-              <ul>
-                <li>
-                  <Link to='/productlist/seller'>Products</Link>
-                </li>
-                <li>
-                  <Link to='/orderlist/seller'>Orders</Link>
-                </li>
-              </ul>
-            )}
-          </li>
+          {userInfo && userInfo.isSeller && (
+            <li className='menu-item'>
+              <div className='container'>
+                <span className='menu-btn'>Seller</span>
+                <button
+                  className='dropdown-btn'
+                  onClick={() => setShowInfo(!isDropDownItemsOpen)}
+                >
+                  {isDropDownItemsOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
+                </button>
+              </div>
+
+              {isDropDownItemsOpen && (
+                <ul>
+                  <li>
+                    <Link to='/productlist/seller' onClick={closeSidebar}>
+                      Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/orderlist/seller' onClick={closeSidebar}>
+                      Orders
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+          )}
+
           <li className='menu-item'>
             <div className='container'>
               <span className='menu-btn'>Category</span>
@@ -142,16 +163,35 @@ const Sidebar = (props) => {
 
             {isDropDownItemsOpen && (
               <ul>
-                <li>
-                  <Link to='/'>Home Page 1</Link>
-                </li>
-                <li>
-                  <Link to='/'>Home Page 2</Link>
-                </li>
+                {categories.map((category) => (
+                  <li>
+                    <Link
+                      key={category}
+                      to={`/search/category/${category}`}
+                      onClick={closeSidebar}
+                    >
+                      {category}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             )}
           </li>
         </ul>
+        {userInfo ? (
+          <div className='register-btn-container'>
+            <button onClick={signoutHandler}>Sign out</button>
+          </div>
+        ) : (
+          <div className='register-btn-container'>
+            <Link to='/signin' onClick={closeSidebar}>
+              Sign in
+            </Link>
+            <Link to='/register' onClick={closeSidebar}>
+              Sign up
+            </Link>
+          </div>
+        )}
       </div>
     </Wrapper>
   )
@@ -161,12 +201,12 @@ export default Sidebar
 
 const Wrapper = styled.aside`
   .inner-content-container {
-    background-color: #fff;
-    width: 300px;
-    padding: 30px;
+    background: var(--clr-white);
+    width: 100%;
     height: 100%;
     position: relative;
     transition: 0.4s;
+    color: var(--clr-blue);
   }
   form {
     position: relative;
@@ -176,33 +216,23 @@ const Wrapper = styled.aside`
     color: #666;
     font-size: 13px;
     width: 100%;
-    height: 40px;
+    height: 4rem;
     border: none;
     padding: 0 40px 0 10px;
-    background-color: #f2f2f2;
+    background: #f2f2f2;
   }
+
   .search-btn {
     top: 0;
     right: 0;
-    width: 40px;
-    height: 40px;
+    width: 4rem;
+    height: 4rem;
     line-height: 42px;
     font-size: 20px;
     color: #fff;
     position: absolute;
-    background: #c89979;
+    background: var(--clr-yellow);
     border: none;
-  }
-
-  .mobile-menu li > a,
-  .menu-btn {
-    font-size: 2rem;
-    color: #252525;
-    text-transform: capitalize;
-    line-height: 18px;
-    position: relative;
-    display: inline-block;
-    padding: 10px 0;
   }
 
   .mobile-menu li > a:hover {
@@ -210,9 +240,9 @@ const Wrapper = styled.aside`
   }
 
   .mobile-menu li ul li a {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
+    margin-left: 8px;
     text-transform: capitalize;
-    padding: 10px 15px 8px;
   }
 
   .menu-item {
@@ -229,7 +259,7 @@ const Wrapper = styled.aside`
     width: 100%;
   }
 
-  @media only screen and (max-width: 479.98px) {
+  @media only screen and (max-width: 479px) {
     .inner-content-container {
       width: 260px;
       padding: 15px;
@@ -241,7 +271,7 @@ const Wrapper = styled.aside`
     width: 50px;
     height: 50px;
     font-size: 30px;
-    background-color: #c89979;
+    background-color: var(--clr-yellow);
     color: #fff;
     line-height: 50px;
     text-align: center;
@@ -250,7 +280,7 @@ const Wrapper = styled.aside`
     transition: 0.4s;
   }
 
-  @media only screen and (max-width: 479.98px) {
+  @media only screen and (max-width: 479px) {
     .btn-close-sidebar {
       width: 40px;
       height: 40px;
@@ -286,5 +316,34 @@ const Wrapper = styled.aside`
     cursor: pointer;
     margin-left: 1rem;
     align-self: center;
+  }
+
+  .register-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .register-btn-container a,
+  .register-btn-container button {
+    margin-bottom: 10px;
+    background: #eef0f1;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    color: var(--clr-blue);
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 36px;
+    padding: 0 25px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .register-btn-container :first-child {
+    margin-right: 0.8rem;
   }
 `
