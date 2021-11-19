@@ -69,8 +69,10 @@ export default function DashboardPage() {
               </ul>
               <div>
                 <div>
-                  <h3 className='sub-heading'>sales</h3>
-                  <h1 className='heading'>Your sales</h1>
+                  <h1 className='heading'>
+                    <span>Your</span>sales
+                  </h1>
+
                   {summary.dailyOrders.length === 0 ? (
                     <Message
                       message='There is no sales made'
@@ -94,8 +96,10 @@ export default function DashboardPage() {
                 </div>
               </div>
               <div>
-                <h3 className='sub-heading'>categories</h3>
-                <h1 className='heading'>product categories</h1>
+                <h1 className='heading'>
+                  product<span>categories</span>
+                </h1>
+
                 {summary.productCategories.length === 0 ? (
                   <Message
                     message='No Category found in the chart'

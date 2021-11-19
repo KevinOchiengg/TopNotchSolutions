@@ -22,8 +22,9 @@ export default function PaymentMethodPage(props) {
       <div className='section-center'>
         <CheckoutSteps step1 step2 step3></CheckoutSteps>
         <form className='form' onSubmit={submitHandler}>
-          <h3 className='sub-heading'>payment</h3>
-          <h1 className='heading'>payment method</h1>
+          <h3 className='heading'>
+            <span>payment</span>method
+          </h3>
 
           <div className='payment-method-container'>
             <input
@@ -61,7 +62,8 @@ export default function PaymentMethodPage(props) {
 }
 
 const Wrapper = styled.section`
-  margin: 12rem 0;
+  margin-top: 9rem;
+  padding-bottom: 6rem;
 
   .sub-heading {
     margin-top: 4rem;
@@ -92,6 +94,7 @@ const Wrapper = styled.section`
   }
 
   @media screen and (min-width: 800px) {
+    margin-top: 4rem;
     .checkbox {
       height: 1.5em;
       width: 1.5em;

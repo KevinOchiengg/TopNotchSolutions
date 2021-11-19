@@ -35,118 +35,115 @@ export default function PlaceOrderPage(props) {
   }, [dispatch, order, props.history, success])
   return (
     <Wrapper>
-      <div className='section-center'>
-        <CheckoutSteps step1 step2 step3 step4 />
-        <div className='row top'>
-          <div className='col-2'>
+      <CheckoutSteps step1 step2 step3 step4 />
+      <div className='row top'>
+        <div className='col-2'>
+          <ul>
+            <li>
+              <div className='card card-body'>
+                <h3>Shipping</h3>
+                <p>
+                  <strong>Name:</strong> {cart.shippingAddress.fullName}
+                  <br />
+                  <strong>Address: </strong> {cart.shippingAddress.address},
+                  {cart.shippingAddress.city},{cart.shippingAddress.postalCode},
+                  {cart.shippingAddress.country}
+                </p>
+              </div>
+            </li>
+            <li>
+              <div className='card card-body'>
+                <h2>Payment</h2>
+                <p>
+                  <strong>Method:</strong> {cart.paymentMethod}
+                </p>
+              </div>
+            </li>
+            <li>
+              <div className='card card-body'>
+                <h2>Order Items</h2>
+                <ul>
+                  {cart.cartItems.map((item) => (
+                    <li key={item.product}>
+                      <div className='row'>
+                        <div>
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className='small'
+                          ></img>
+                        </div>
+                        <div className='min-30'>
+                          <Link to={`/product/${item.product}`}>
+                            {item.name}
+                          </Link>
+                        </div>
+
+                        <div>
+                          {item.qty} x {formatPrice(item.price)} ={' '}
+                          {formatPrice(item.qty * item.price)}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className='col-1'>
+          <div className='card card-body'>
             <ul>
               <li>
-                <div className='card card-body'>
-                  <h3>Shipping</h3>
-                  <p>
-                    <strong>Name:</strong> {cart.shippingAddress.fullName}
-                    <br />
-                    <strong>Address: </strong> {cart.shippingAddress.address},
-                    {cart.shippingAddress.city},
-                    {cart.shippingAddress.postalCode},
-                    {cart.shippingAddress.country}
-                  </p>
+                <h2>Order Summary</h2>
+              </li>
+              <li>
+                <div className='row'>
+                  <div>Items</div>
+                  <div>{formatPrice(cart.itemsPrice)}</div>
                 </div>
               </li>
               <li>
-                <div className='card card-body'>
-                  <h2>Payment</h2>
-                  <p>
-                    <strong>Method:</strong> {cart.paymentMethod}
-                  </p>
+                <div className='row'>
+                  <div>Shipping</div>
+                  <div>{formatPrice(cart.shippingPrice)}</div>
                 </div>
               </li>
               <li>
-                <div className='card card-body'>
-                  <h2>Order Items</h2>
-                  <ul>
-                    {cart.cartItems.map((item) => (
-                      <li key={item.product}>
-                        <div className='row'>
-                          <div>
-                            <img
-                              src={item.image}
-                              alt={item.name}
-                              className='small'
-                            ></img>
-                          </div>
-                          <div className='min-30'>
-                            <Link to={`/product/${item.product}`}>
-                              {item.name}
-                            </Link>
-                          </div>
-
-                          <div>
-                            {item.qty} x {formatPrice(item.price)} ={' '}
-                            {formatPrice(item.qty * item.price)}
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
+                <div className='row'>
+                  <div>Tax</div>
+                  <div>{formatPrice(cart.taxPrice)}</div>
                 </div>
               </li>
+              <li>
+                <div className='row'>
+                  <div>
+                    <strong> Order Total</strong>
+                  </div>
+                  <div>
+                    <strong>{formatPrice(cart.totalPrice)}</strong>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <button
+                  type='button'
+                  onClick={placeOrderHandler}
+                  className='primary btn block'
+                  disabled={cart.cartItems.length === 0}
+                >
+                  Place Order
+                </button>
+              </li>
+              {loading && <Loading />}
+              {error && (
+                <Message
+                  message='error occured please check Your internet connection'
+                  variant='danger'
+                  name='hide'
+                />
+              )}
             </ul>
-          </div>
-          <div className='col-1'>
-            <div className='card card-body'>
-              <ul>
-                <li>
-                  <h2>Order Summary</h2>
-                </li>
-                <li>
-                  <div className='row'>
-                    <div>Items</div>
-                    <div>{formatPrice(cart.itemsPrice)}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className='row'>
-                    <div>Shipping</div>
-                    <div>{formatPrice(cart.shippingPrice)}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className='row'>
-                    <div>Tax</div>
-                    <div>{formatPrice(cart.taxPrice)}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className='row'>
-                    <div>
-                      <strong> Order Total</strong>
-                    </div>
-                    <div>
-                      <strong>{formatPrice(cart.totalPrice)}</strong>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <button
-                    type='button'
-                    onClick={placeOrderHandler}
-                    className='primary btn block'
-                    disabled={cart.cartItems.length === 0}
-                  >
-                    Place Order
-                  </button>
-                </li>
-                {loading && <Loading />}
-                {error && (
-                  <Message
-                    message='error occured please check Your internet connection'
-                    variant='danger'
-                    name='hide'
-                  />
-                )}
-              </ul>
-            </div>
           </div>
         </div>
       </div>
@@ -154,9 +151,15 @@ export default function PlaceOrderPage(props) {
   )
 }
 const Wrapper = styled.section`
-  margin: 12rem 0;
-  font-size: 2.2rem;
+  margin: auto 5%;
+  margin-top: 9rem;
+  font-size: 1.7rem;
+  padding: 4rem 0;
   color: var(--clr-blue);
+
+  @media (min-width: 800px) {
+    margin-top: 0;
+  }
 
   .card {
     border: 0.1rem #c0c0c0 solid;
@@ -174,9 +177,11 @@ const Wrapper = styled.section`
 
   .card-body > * {
     margin-bottom: 1.7rem;
+    font-size: 1.7rem;
   }
   .card-body ul li {
     margin: 2rem auto;
+    font-size: 1.7rem;
   }
 
   .row {
@@ -207,9 +212,7 @@ const Wrapper = styled.section`
   .min-30 {
     min-width: 30rem;
   }
-  .p-1 {
-    padding: 1rem;
-  }
+
   img.small {
     max-width: 5rem;
     width: 100%;

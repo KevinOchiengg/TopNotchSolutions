@@ -6,8 +6,6 @@ import { listProductCategories } from '../actions/productActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { signout } from '../actions/userActions'
 import styled from 'styled-components'
-import Loading from './Loading'
-import Message from './Message'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import { FaSearch } from 'react-icons/fa'
 const Sidebar = (props) => {
@@ -221,7 +219,9 @@ const Wrapper = styled.aside`
     padding: 0 40px 0 10px;
     background: #f2f2f2;
   }
-
+  .mobile-menu {
+    overflow-y: scroll;
+  }
   .search-btn {
     top: 0;
     right: 0;
@@ -236,7 +236,7 @@ const Wrapper = styled.aside`
   }
 
   .mobile-menu li > a:hover {
-    color: #c89979;
+    color: var(--clr-yellow);
   }
 
   .mobile-menu li ul li a {

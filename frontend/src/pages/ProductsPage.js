@@ -61,63 +61,57 @@ const ProductsPage = (props) => {
 
   return (
     <Wrapper>
-      <div className='section-center'>
-        <div className='products-category-container'>
-          <Filters />
-          <div className='products-list-section'>
-            <div className='products-list-header'>
-              <ul className='nav shop-item-filter-list'>
-                <li
-                  className={`${
-                    viewproducts ? 'active grid-view' : 'grid-view'
-                  }`}
-                >
-                  <FaTh
-                    onClick={(e) => {
-                      setViewProduct(true)
-                    }}
-                  />
-                </li>
-                <li
-                  className={`${
-                    !viewproducts ? 'active grid-view' : 'grid-view'
-                  }`}
-                >
-                  <FaThList
-                    onClick={(e) => {
-                      setViewProduct(false)
-                    }}
-                  />
-                </li>
-              </ul>
-
-              <div className='product-relevance'>
-                <p className='sort-by'>Sort By :</p>
-                <select
-                  className='nice-select'
-                  value={order}
-                  onChange={(e) => {
-                    props.history.push(getFilterUrl({ order: e.target.value }))
+      <div className='products-category-container'>
+        <Filters />
+        <div className='products-list-section'>
+          <div className='products-list-header'>
+            <ul className='nav shop-item-filter-list'>
+              <li
+                className={`${viewproducts ? 'active grid-view' : 'grid-view'}`}
+              >
+                <FaTh
+                  onClick={(e) => {
+                    setViewProduct(true)
                   }}
-                >
-                  <option value='newest'>Newest Arrivals</option>
-                  <option value='lowest'>Price: Low to High</option>
-                  <option value='highest'>Price: High to Low</option>
-                  <option value='toprated'>Avg. Customer Reviews</option>
-                </select>
-              </div>
-            </div>
-            {viewproducts ? <ListView /> : <GridView />}
+                />
+              </li>
+              <li
+                className={`${
+                  !viewproducts ? 'active grid-view' : 'grid-view'
+                }`}
+              >
+                <FaThList
+                  onClick={(e) => {
+                    setViewProduct(false)
+                  }}
+                />
+              </li>
+            </ul>
 
-            <div className='pagination'>
-              {[...Array(pages).keys()].map((x) => (
-                <Link key={x + 1} to={getFilterUrl({ page: x + 1 })}>
-                  <span className={x + 1 === page ? 'active' : ''}>
-                    {x + 1}
-                  </span>
-                </Link>
-              ))}
+            <div className='product-relevance'>
+              <p className='sort-by'>Sort By :</p>
+              <select
+                className='nice-select'
+                value={order}
+                onChange={(e) => {
+                  props.history.push(getFilterUrl({ order: e.target.value }))
+                }}
+              >
+                <option value='newest'>Newest Arrivals</option>
+                <option value='lowest'>Price: Low to High</option>
+                <option value='highest'>Price: High to Low</option>
+                <option value='toprated'>Avg. Customer Reviews</option>
+              </select>
             </div>
+          </div>
+          {viewproducts ? <ListView /> : <GridView />}
+
+          <div className='pagination'>
+            {[...Array(pages).keys()].map((x) => (
+              <Link key={x + 1} to={getFilterUrl({ page: x + 1 })}>
+                <span className={x + 1 === page ? 'active' : ''}>{x + 1}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -131,7 +125,9 @@ const Wrapper = styled.section`
   margin-top: 9rem;
   padding: 4rem 0;
   color: var(--clr-dark-grey);
-
+  .products-category-container {
+    margin: auto 5%;
+  }
   a {
     color: var(--clr-dark-grey);
     font-size: 1.7rem;

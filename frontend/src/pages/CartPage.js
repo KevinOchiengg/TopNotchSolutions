@@ -65,20 +65,20 @@ export default function CartPage(props) {
       <h3 className='heading'>
         <span>your</span>products
       </h3>
-      <div class='products-container section-center'>
-        <div class='box-container'>
+      <div className='products-container '>
+        <div className='box-container'>
           {cartItems.map((item) => {
             return (
-              <div class='box'>
+              <div className='box'>
                 <FaTimes onClick={() => removeFromCartHandler(item.product)} />
                 <img src={item.image} alt='' />
-                <div class='content'>
+                <div className='content'>
                   <Link to={'/product/' + item.product}>
                     <h3>{item.name}</h3>
                   </Link>
                   <span> quantity : </span>
                   <select
-                    className='quantity'
+                    classNameName='quantity'
                     value={item.qty}
                     onChange={(e) =>
                       dispatch(addToCart(item.product, Number(e.target.value)))
@@ -93,7 +93,7 @@ export default function CartPage(props) {
 
                   <br />
                   <span> price : </span>
-                  <span class='price'>{formatPrice(item.price)} </span>
+                  <span className='price'>{formatPrice(item.price)} </span>
                 </div>
               </div>
             )
@@ -101,23 +101,23 @@ export default function CartPage(props) {
         </div>
       </div>
 
-      <div class='cart-total section-center'>
-        <h3 class='title'> cart total </h3>
+      <div className='cart-total'>
+        <h3 className='title'> cart total </h3>
 
-        <div class='box'>
-          <h3 class='subtotal'>
+        <div className='box'>
+          <h3 className='subtotal'>
             total items: <span>{cartItems.reduce((a, c) => a + c.qty, 0)}</span>
           </h3>
-          <h3 class='total'>
+          <h3 className='total'>
             total price:{' '}
             <span>{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</span>
           </h3>
 
-          <Link to='/signin?redirect=shipping' class='btn'>
+          <Link to='/shipping' className='btn'>
             proceed to checkout
           </Link>
           <br />
-          <Link to='/products' class='btn'>
+          <Link to='/products' className='btn'>
             continue to shopping
           </Link>
         </div>
@@ -127,10 +127,15 @@ export default function CartPage(props) {
 }
 
 const Wrapper = styled.section`
-  position: relative;
-  top: 9rem;
-  padding: 8rem 0;
-
+  margin-top: 9rem;
+  padding: 1rem 0;
+  padding-bottom: 4rem;
+  @media (min-width: 800px) {
+    margin-top: 0rem;
+    .products-container {
+      margin: auto 5%;
+    }
+  }
   .title {
     font-size: 2.5rem;
     padding: 1rem;
@@ -208,6 +213,7 @@ const Wrapper = styled.section`
   }
 
   .cart-total {
+    margin: 0 5%;
     margin-top: 2rem;
     border: 0.1rem solid rgba(0, 0, 0, 0.2);
     border-radius: 0.5rem;
@@ -231,9 +237,5 @@ const Wrapper = styled.section`
 
   .title {
     color: var(--clr-blue);
-  }
-
-  @media (min-width: 800px) {
-    top: 0;
   }
 `

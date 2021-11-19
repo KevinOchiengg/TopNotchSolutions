@@ -103,49 +103,48 @@ const Navbar = (props) => {
             </div>
 
             <div className='shopping-cart-wrap'>
-              <Link to='/'>
+              <Link to='/cart'>
                 <FaShoppingCart className='cart' />
                 {cartItems.length >= 0 && (
                   <span className='cart-total'>{cartItems.length}</span>
                 )}
               </Link>
-              <ul className='mini-cart'>
-                {cartItems.map((item) => (
-                  <li className='cart-item'>
-                    <div className='cart-image'>
-                      <Link to={'/product/' + item.product}>
-                        <img src={item.image} alt='' />
-                      </Link>
-                    </div>
-                    <div className='cart-title'>
-                      <Link to={'/product/' + item.product}>
-                        <h4>{item.name}</h4>
-                      </Link>
-                      <div className='quanti-price-wrap'>
-                        <span className='quantity'>1 ×</span>
-                        <div className='price-box'>
-                          <span className='new-price'>
-                            {formatPrice(item.price)}
-                          </span>
+              {cartItems.length == 0 ? null : (
+                <ul className='mini-cart'>
+                  {cartItems.map((item) => (
+                    <li className='cart-item'>
+                      <div className='cart-image'>
+                        <Link to={'/product/' + item.product}>
+                          <img src={item.image} alt='' />
+                        </Link>
+                      </div>
+                      <div className='cart-title'>
+                        <Link to={'/product/' + item.product}>
+                          <h4>{item.name}</h4>
+                        </Link>
+                        <div className='quanti-price-wrap'>
+                          <span className='quantity'>1 ×</span>
+                          <div className='price-box'>
+                            <span className='new-price'>
+                              {formatPrice(item.price)}
+                            </span>
+                          </div>
+                        </div>
+                        <div className='remove_from_cart'>
+                          <FaTimes onClick={removeFromCartHandler} />
                         </div>
                       </div>
-                      <div
-                        className='remove_from_cart'
-                        onClick={removeFromCartHandler}
-                      >
-                        <FaTimes />
-                      </div>
+                    </li>
+                  ))}
+
+                  <li className='mini-cart-btns'>
+                    <div className='cart-btns'>
+                      <Link to='/cart'>View cart</Link>
+                      <Link to='/shipping'>Checkout</Link>
                     </div>
                   </li>
-                ))}
-
-                <li className='mini-cart-btns'>
-                  <div className='cart-btns'>
-                    <Link to='/cart'>View cart</Link>
-                    <Link to='/signin?redirect=shipping'>Checkout</Link>
-                  </div>
-                </li>
-              </ul>
+                </ul>
+              )}
             </div>
 
             {userInfo ? (
@@ -270,7 +269,7 @@ const Header = styled.header`
     background: var(--clr-yellow);
     border-radius: 4px;
     color: var(--clr-blue);
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 500;
     height: 4rem;
     line-height: 4rem;
@@ -386,7 +385,7 @@ const Header = styled.header`
   }
 
   .shopping-cart-wrap a:hover {
-    color: #fff;
+    color: var(--clr-yellow);
   }
   #cart-total {
     background: #0e7346;
@@ -452,7 +451,6 @@ const Header = styled.header`
   }
   .cart-title h4 {
     font-size: 14px;
-    font-weight: 400;
   }
   .quanti-price-wrap {
     display: flex;
@@ -462,7 +460,7 @@ const Header = styled.header`
     color: #333;
   }
   .price-box {
-    color: #333;
+    color: var(--clr-blue);
     font-weight: 500;
   }
   .shopping-cart-wrap
@@ -638,8 +636,7 @@ const Navigation = styled.nav`
   }
   .main-menu-area ul > li > a {
     display: block;
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 1.8rem;
     color: var(--clr-blue);
     padding: 0;
     text-transform: uppercase;
@@ -709,9 +706,9 @@ const Navigation = styled.nav`
   }
   .sub-menu > li > a {
     padding: 0;
-    font-weight: 400;
+    font-size: 1.7rem;
     margin-bottom: 8px;
-    color: #333 !important;
+    color: var(--clr-blue);
     text-transform: capitalize;
   }
   .sub-menu > li > a::before {

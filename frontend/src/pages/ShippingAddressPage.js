@@ -70,8 +70,10 @@ export default function ShippingAddressPage(props) {
       <div className='section-center'>
         <CheckoutSteps step1 step2></CheckoutSteps>
         <form className='form' onSubmit={submitHandler}>
-          <h3 className='sub-heading'>shipping</h3>
-          <h1 className='heading'>shippingAddress</h1>
+          <h3 className='heading'>
+            <span>shipping</span>Address
+          </h3>
+
           <div>
             <label htmlFor='fullName'>Full Name</label>
             <input
@@ -144,8 +146,9 @@ export default function ShippingAddressPage(props) {
   )
 }
 const Wrapper = styled.section`
-  margin: 10rem 0;
-  color: var(--clr-grey);
+  padding: 4rem 0;
+  margin-top: 9rem;
+  color: var(--clr-dark-grey);
 
   .sub-heading {
     margin-top: 3rem;
@@ -161,9 +164,6 @@ const Wrapper = styled.section`
   }
 
   @media screen and (min-width: 800px) {
-    .checkbox {
-      height: 1.5em;
-      width: 1.5em;
-    }
+    margin-top: 0rem;
   }
 `

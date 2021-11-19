@@ -4,9 +4,9 @@ import styled from 'styled-components'
 const AboutPage = () => {
   return (
     <Wrapper>
-      <section className='about section-center'>
+      <section className='about'>
         <div className='image'>
-          <img src='images/about-img.jpg' alt='' />
+          <img src='images/slide-img3.jpg' alt='' />
         </div>
 
         <div className='content'>
@@ -24,7 +24,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className='services section-center'>
+      <section className='services '>
         <h1 className='title'>
           <span>our services</span> <a href='#'>view all </a>
         </h1>
@@ -63,13 +63,18 @@ const AboutPage = () => {
 }
 
 const Wrapper = styled.section`
+  margin-top: 9rem;
+  padding: 8rem 0;
   .about {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
   }
-
+  .services,
+  .about {
+    margin: auto 5%;
+  }
   .about .image {
     flex: 1 1 40rem;
   }
@@ -129,6 +134,9 @@ const Wrapper = styled.section`
     color: #779;
     line-height: 2;
     padding: 1rem 0;
+  }
+  @media (min-width: 800px) {
+    margin-top: 0;
   }
 `
 export default AboutPage

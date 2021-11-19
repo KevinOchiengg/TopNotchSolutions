@@ -249,8 +249,8 @@ export default function OrderPage(props) {
 }
 
 const Wrapper = styled.section`
-  margin: 12rem 0;
-
+  margin-top: 9rem;
+  padding: 6rem 0;
   color: var(--clr-blue);
   .card {
     background-color: var(--clr-light-blue);
@@ -260,17 +260,19 @@ const Wrapper = styled.section`
     box-shadow: var(--light-shadow);
   }
   .card-body {
+    font-size: 1.4rem;
     padding: 2rem;
   }
 
   h3 {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
   .card-body > * {
     margin-bottom: 0.5rem;
   }
 
   .card-body ul li {
+    font-size: 1.4rem;
     margin: 2rem auto;
   }
   .row {
@@ -290,6 +292,7 @@ const Wrapper = styled.section`
   }
   .col-1 {
     flex: 1 1 25rem;
+    border: 2pxx solid red;
   }
   .col-2 {
     flex: 2 1 50rem;
@@ -306,5 +309,8 @@ const Wrapper = styled.section`
   img.small {
     max-width: 5rem;
     width: 100%;
+  }
+  @media screen and (min-width: 800px) {
+    margin-top: 0rem;
   }
 `

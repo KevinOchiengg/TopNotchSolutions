@@ -9,7 +9,7 @@ const BrandSection = () => {
           <img src='images/brands/lenovo.png' alt='dior' />
         </div>
         <div className='brand-single-item'>
-          <img src='images/brands/sony.png' alt='lui' />
+          <img src='images/brands/philip.png' alt='lui' />
         </div>
         <div className='brand-single-item'>
           <img src='images/brands/sumsung.png' alt='gucci' />
@@ -35,7 +35,6 @@ const Wrapper = styled.section`
   }
 
   img {
-    filter: grayscale(100%);
     width: 10rem;
   }
 
